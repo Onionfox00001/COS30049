@@ -9,16 +9,8 @@ const Discover = () => {
   // DISCOVER NAVIGATION MENU
   const discover = [
     {
-      name: "Collection",
-      link: "collection",
-    },
-    {
       name: "Search",
       link: "search",
-    },
-    {
-      name: "Author Profile",
-      link: "author-profile",
     },
     {
       name: "NFT Details",
@@ -31,10 +23,6 @@ const Discover = () => {
     {
       name: "Connect Wallet",
       link: "connect-wallet",
-    },
-    {
-      name: "Blog",
-      link: "blog",
     },
   ]
   return ( 

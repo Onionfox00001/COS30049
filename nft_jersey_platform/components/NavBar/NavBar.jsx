@@ -23,17 +23,18 @@ const NavBar = () => {
 
   const openMenu = (e) => {
     const btnText = e.target.innerText;
-    if(btnText == "Discover") {
-      setDiscover(true);
+    if (btnText === "Discover") {
+      setDiscover((prevState) => !prevState);
       setHelp(false);
       setNotification(false);
       setProfile(false);
-    } else if (btnText == "Help Center") {
+    } else if (btnText === "Help Center") {
       setDiscover(false);
-      setHelp(true);
+      setHelp((prevState) => !prevState);
       setNotification(false);
       setProfile(false);
-    } else  {
+    } else {
+      // Hide all components if neither "Discover" nor "Help Center" is clicked
       setDiscover(false);
       setHelp(false);
       setNotification(false);
@@ -97,8 +98,8 @@ const NavBar = () => {
             <p onClick={(e) => openMenu(e)}>Discover</p>
             {discover && (
               <div className={Style.navbar_container_right_discover_box}>
-              <Discover />
-            </div>
+                <Discover />
+              </div>
             )}
           </div>
 

@@ -6,12 +6,8 @@ import Style from './HelpCenter.module.css'
 const HelpCenter = () => {
   const helpCenter = [
     {
-      name: "About",
-      link: "about",
-    },
-    {
-      name: "Contact Us",
-      link: "contact-us",
+      name: "About Us",
+      link: "aboutus",
     },
     {
       name: "Sign Up",
@@ -21,10 +17,6 @@ const HelpCenter = () => {
       name: "Sign In",
       link: "sign-in",
     },
-    {
-      name: "Subscription",
-      link: "subscription",
-    }
   ]
   return (
     <div className={Style.box}>

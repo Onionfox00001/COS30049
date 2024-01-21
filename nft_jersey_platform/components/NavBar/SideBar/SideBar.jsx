@@ -26,16 +26,8 @@ const SideBar = ({setOpenSideMenu}) => {
   // DISCOVER NAVIGATION MENU
   const discover = [
     {
-      name: "Collection",
-      link: "collection",
-    },
-    {
       name: "Search",
       link: "search",
-    },
-    {
-      name: "Author Profile",
-      link: "author-profile",
     },
     {
       name: "NFT Details",
@@ -49,20 +41,12 @@ const SideBar = ({setOpenSideMenu}) => {
       name: "Connect Wallet",
       link: "connect-wallet",
     },
-    {
-      name: "Blog",
-      link: "blog",
-    },
   ]
   // HELP CENTER MENU
   const helpCenter = [
     {
-      name: "About",
+      name: "About Us",
       link: "about",
-    },
-    {
-      name: "Contact Us",
-      link: "contact-us",
     },
     {
       name: "Sign Up",
@@ -71,10 +55,6 @@ const SideBar = ({setOpenSideMenu}) => {
     {
       name: "Sign In",
       link: "sign-in",
-    },
-    {
-      name: "Subscription",
-      link: "subscription",
     },
   ]
 
