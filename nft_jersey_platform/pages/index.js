@@ -10,12 +10,15 @@ const Home = () => {
       <HeroSection />
       <Service />
       <Subscribe />
-      <Title 
+      {/* <Title 
         heading="Featured NFTs"
-        paragragh="Discover, collect, and sell NFTs"/>
+        paragragh="Discover, collect, and sell NFTs"/> */}
       <Slider />
+      {/* <Title 
+        heading="Featured NFTs"
+        paragragh="Discover the most oustanding NFT Jerseys."/>
       <Filter />
-      <NFTCard />
+      <NFTCard /> */}
     </div>
   )
 };

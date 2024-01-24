@@ -55,7 +55,12 @@ import nft_jersey_vieira from "./nft_jersey_vieira.jpg";
 import nft_jersey_xavi from "./nft_jersey_xavi.jpg";
 import nft_jersey_zidane from "./nft_jersey_zidane.jpg";
 import musiceWave from "./musicwave.png";
-import update from "./update.png";
+import update from "./update.jpg";
+import provider_1 from './provider_1.png'
+import provider_2 from './provider_2.png'
+import provider_3 from './provider_3.png'
+import provider_4 from './provider_4.png'
+
 
 export default {
   collection,
@@ -116,4 +121,8 @@ export default {
   vimeo,
   youtube,
   zgcmq,
+  provider_1,
+  provider_2,
+  provider_3,
+  provider_4
 };

@@ -18,7 +18,7 @@ const HeroSection = () => {
           <Image 
             src={images.hero} 
             alt='Hero section' 
-            width={600} 
+            width={700} 
             height={600} 
           />
         </div>
