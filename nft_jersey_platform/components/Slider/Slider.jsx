@@ -18,7 +18,7 @@ const Slider = () => {
         },
         { 
             id: 2,
-            imageSrc: images.nft_jersey_beckham,
+            imageSrc: images.nft_jersey_ronaldo9,
             title: "NFT Jersey #2",
             currentBid: "2.500 ETH",
             remainingTime: "1h: 30m: 45s",

@@ -27,7 +27,7 @@ const SideBar = ({setOpenSideMenu}) => {
   const discover = [
     {
       name: "Search",
-      link: "search",
+      link: "searchPage",
     },
     {
       name: "NFT Details",
@@ -35,7 +35,7 @@ const SideBar = ({setOpenSideMenu}) => {
     },
     {
       name: "Account Setting",
-      link: "account-setting",
+      link: "account",
     },
     {
       name: "Connect Wallet",
@@ -46,7 +46,7 @@ const SideBar = ({setOpenSideMenu}) => {
   const helpCenter = [
     {
       name: "About Us",
-      link: "about",
+      link: "contactus",
     },
     {
       name: "Sign Up",

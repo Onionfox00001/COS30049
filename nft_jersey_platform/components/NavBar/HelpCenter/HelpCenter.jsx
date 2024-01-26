@@ -7,15 +7,15 @@ const HelpCenter = () => {
   const helpCenter = [
     {
       name: "About Us",
-      link: "aboutus",
+      link: "contactus",
     },
     {
       name: "Sign Up",
-      link: "sign-up",
+      link: "signup",
     },
     {
       name: "Sign In",
-      link: "sign-in",
+      link: "signin",
     },
   ]
   return (

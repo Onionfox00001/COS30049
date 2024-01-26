@@ -1,15 +1,8 @@
-import collection from "./collection.png";
-import creatorbackground1 from "./creatorbackground-1.jpeg";
-import creatorbackground2 from "./creatorbackground-2.jpeg";
-import creatorbackground3 from "./creatorbackground-3.jpeg";
-import creatorbackground4 from "./creatorbackground-4.jpg";
-import creatorbackground5 from "./creatorbackground-5.jpg";
-import creatorbackground6 from "./creatorbackground-6.jpg";
-import creatorbackground7 from "./creatorbackground-7.jpg";
-import creatorbackground8 from "./creatorbackground-8.jpg";
-import creatorbackground9 from "./creatorbackground-9.jpg";
-import creatorbackground10 from "./creatorbackground-10.jpg";
-import creatorbackground11 from "./creatorbackground-11.jpg";
+import founder1 from "./founder_1.jpg";
+import founder2 from "./founder_2.jpg";
+import founder3 from "./founder_3.jpg";
+import founder4 from "./founder_4.jpg";
+import founder5 from "./founder_5.jpg";
 import user1 from "./user-1.png";
 import user2 from "./user-2.png";
 import user3 from "./user-3.png";
@@ -33,7 +26,6 @@ import vimeo from "./vimeo.svg";
 import vector from "./VectorHIW.svg";
 import zgcmq from "./zgcmq.svg";
 import hero from "./hero.png";
-import getAble from "./getable.png";
 import nft_jersey_alonso from "./nft_jersey_alonso.jpg";
 import nft_jersey_basten from "./nft_jersey_basten.jpg";
 import nft_jersey_beckham from "./nft_jersey_beckham.jpg";
@@ -63,7 +55,11 @@ import provider_4 from './provider_4.png'
 
 
 export default {
-  collection,
+  founder1,
+  founder2,
+  founder3,
+  founder4,
+  founder5,
   update,
   musiceWave,
   nft_jersey_alonso,
@@ -86,19 +82,7 @@ export default {
   nft_jersey_vieira,
   nft_jersey_xavi,
   nft_jersey_zidane,
-  getAble,
   hero,
-  creatorbackground1,
-  creatorbackground2,
-  creatorbackground3,
-  creatorbackground4,
-  creatorbackground5,
-  creatorbackground6,
-  creatorbackground7,
-  creatorbackground8,
-  creatorbackground9,
-  creatorbackground10,
-  creatorbackground11,
   user1,
   user2,
   user3,
