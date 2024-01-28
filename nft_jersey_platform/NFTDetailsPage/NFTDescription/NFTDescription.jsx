@@ -12,19 +12,21 @@ import {
 } from 'react-icons/ti';
 import { BiTransferAlt, BiDollar } from "react-icons/bi";
 
-//INTERNAL IMPORT
-import Style from './NFTDescription.module.css';
-import images from '../../img';
-import { Button } from "../../components/components_index";
-import { NFTTabs } from "../NFTDetailsIndex";
+// Internal imports
+import Style from './NFTDescription.module.css'; // Importing CSS module for styles
+import images from '../../img'; // Importing images
+import { Button } from "../../components/components_index"; // Importing Button component
+import { NFTTabs } from "../NFTDetailsIndex"; // Importing NFTTabs component
 
 const NFTDescription = () => {
-    const [social, setSocial] = useState(false);
-    const [NFTMenu, setNFTMenu] = useState(false);
-    const [history, setHistory] = useState(true);
-    const [provanance, setProvanance] = useState(false);
-    const [owner, setOwner] = useState(false);
+    // State variables
+    const [social, setSocial] = useState(false); // State for social share menu visibility
+    const [NFTMenu, setNFTMenu] = useState(false); // State for NFT menu visibility
+    const [history, setHistory] = useState(true); // State for bid history tab visibility
+    const [provanance, setProvanance] = useState(false); // State for provanance tab visibility
+    const [owner, setOwner] = useState(false); // State for owner tab visibility
 
+    // Arrays for tab content
     const historyArray = [
         images.user1,
         images.user2,
@@ -49,6 +51,7 @@ const NFTDescription = () => {
         images.user5,
     ];
 
+    // Function to toggle social share menu visibility
     const openSocial = () => {
         if (!social){
             setSocial(true);
@@ -58,6 +61,7 @@ const NFTDescription = () => {
         }
     };
 
+    // Function to toggle NFT menu visibility
     const openNFTMenu = () => {
         if (!NFTMenu){
             setNFTMenu(true);
@@ -67,19 +71,21 @@ const NFTDescription = () => {
         }
     };
 
+    // Function to switch between tabs
     const openTabs = (e) => {
         const btnText = e.target.innerText;
-        if (btnText == "Bid History"){
+        if (btnText === "Bid History"){
             setHistory(true);
             setProvanance(false);
             setOwner(false);
-        } else if (btnText == "Provanance"){
+        } else if (btnText === "Provanance"){
             setHistory(false);
             setProvanance(true);
             setOwner(false);
         }
     };
 
+    // Function to toggle owner tab visibility
     const openOwner = () => {
         if (!owner){
             setOwner(true);
@@ -92,65 +98,51 @@ const NFTDescription = () => {
     };
 
     return (
-        <div className={Style.NFTDescription}>
-            <div className={Style.NFTDescription_box}>
-                {/* Part One */}
-                <div className={Style.NFTDescription_box_share}>
+        <div className={Style.NFTDescription}> {/* Container for NFT description */}
+            <div className={Style.NFTDescription_box}> {/* Box for NFT description */}
+                {/* Part One: Social share and NFT menu */}
+                <div className={Style.NFTDescription_box_share}> {/* Share section */}
                     <p>Virtual Worlds</p>
-                    <div className={Style.NFTDescription_box_share_box}>
+                    <div className={Style.NFTDescription_box_share_box}> {/* Share menu */}
                         <MdCloudUpload 
                             className={Style.NFTDescription_box_share_box_icon} 
                             onClick={() => openSocial()} 
                         />
 
+                        {/* Social share options */}
                         {social && (
-                        <div className={Style.NFTDescription_box_share_box_social}>
-                            <a href="#">
-                                <TiSocialFacebook/> Facebook
-                            </a>
-                            <a href="#">
-                                <TiSocialInstagram/> Instagram
-                            </a>
-                            <a href="#">
-                                <TiSocialLinkedin/> LinkedIn
-                            </a>
-                            <a href="#">
-                                <TiSocialTwitter/> Twitter
-                            </a>
-                            <a href="#">
-                                <TiSocialYoutube/> Youtube
-                            </a>
-                        </div>
-                    )}
+                            <div className={Style.NFTDescription_box_share_box_social}>
+                                <a href="#"><TiSocialFacebook/> Facebook</a>
+                                <a href="#"><TiSocialInstagram/> Instagram</a>
+                                <a href="#"><TiSocialLinkedin/> LinkedIn</a>
+                                <a href="#"><TiSocialTwitter/> Twitter</a>
+                                <a href="#"><TiSocialYoutube/> Youtube</a>
+                            </div>
+                        )}
 
-                    <BsThreeDots 
-                        className={Style.NFTDescription_box_share_box_icon} 
-                        onClick={() => openNFTMenu()}
-                    />
+                        {/* NFT menu */}
+                        <BsThreeDots 
+                            className={Style.NFTDescription_box_share_box_icon} 
+                            onClick={() => openNFTMenu()}
+                        />
 
-                    {NFTMenu && (
-                        <div className={Style.NFTDescription_box_share_box_social}>
-                            <a href="#">
-                                <BiDollar/> Change price
-                            </a>
-                            <a href="#">
-                                <BiTransferAlt/> Transfer
-                            </a>
-                            <a href="#">
-                                <MdReportProblem/> Report Abuse
-                            </a>
-                            <a href="#">
-                                <MdOutlineDeleteSweep/> Delete Item
-                            </a>
-                        </div>
-                    )}
+                        {/* NFT menu options */}
+                        {NFTMenu && (
+                            <div className={Style.NFTDescription_box_share_box_social}>
+                                <a href="#"><BiDollar/> Change price</a>
+                                <a href="#"><BiTransferAlt/> Transfer</a>
+                                <a href="#"><MdReportProblem/> Report Abuse</a>
+                                <a href="#"><MdOutlineDeleteSweep/> Delete Item</a>
+                            </div>
+                        )}
                     </div>
                 </div>
 
-                {/* Part Two */}
-                <div className={Style.NFTDescription_box_profile}>
+                {/* Part Two: NFT profile and bidding details */}
+                <div className={Style.NFTDescription_box_profile}> {/* Profile section */}
                     <h1>BearX #23453</h1>
-                    <div className={Style.NFTDescription_box_profile_box}>
+                    <div className={Style.NFTDescription_box_profile_box}> {/* Profile boxes */}
+                        {/* Creator profile */}
                         <div className={Style.NFTDescription_box_profile_box_left}>
                             <Image 
                                 src={images.user1} 
@@ -161,12 +153,11 @@ const NFTDescription = () => {
                             />
                             <div className={Style.NFTDescription_box_profile_box_left_info}>
                                 <small>Creator</small> <br />
-                                <span>
-                                    Karli Costa <MdVerified/>
-                                </span>
+                                <span>Karli Costa <MdVerified/></span>
                             </div>
                         </div>
 
+                        {/* Owner profile */}
                         <div className={Style.NFTDescription_box_profile_box_right}>
                             <Image 
                                 src={images.user2} 
@@ -177,90 +168,90 @@ const NFTDescription = () => {
                             />
                             <div className={Style.NFTDescription_box_profile_box_right_info}>
                                 <small>Creator</small> <br />
-                                <span>
-                                    Karli Costa <MdVerified/>
-                                </span>
+                                <span>Karli Costa <MdVerified/></span>
                             </div>
                         </div>
                     </div>
-                
 
-                <div className={Style.NFTDescription_box_profile_biding}>
-                    <p>
-                        <MdTimer/> <span>Auction ending in:</span>
-                    </p>
+                    {/* Bidding details */}
+                    <div className={Style.NFTDescription_box_profile_biding}>
+                        <p><MdTimer/> <span>Auction ending in:</span></p>
 
-                    <div className={Style.NFTDescription_box_profile_biding_box_timer}>
-                        <div className={Style.NFTDescription_box_profile_biding_box_timer_item}>
-                            <p>2</p>
-                            <span>Days</span>
+                        {/* Timer */}
+                        <div className={Style.NFTDescription_box_profile_biding_box_timer}>
+                            {/* Time units */}
+                            <div className={Style.NFTDescription_box_profile_biding_box_timer_item}>
+                                <p>2</p>
+                                <span>Days</span>
+                            </div>
+                            <div className={Style.NFTDescription_box_profile_biding_box_timer_item}>
+                                <p>22</p>
+                                <span>Hours</span>
+                            </div>
+                            <div className={Style.NFTDescription_box_profile_biding_box_timer_item}>
+                                <p>45</p>
+                                <span>Mins</span>
+                            </div>
+                            <div className={Style.NFTDescription_box_profile_biding_box_timer_item}>
+                                <p>22</p>
+                                <span>Secs</span>
+                            </div>
                         </div>
-                        <div className={Style.NFTDescription_box_profile_biding_box_timer_item}>
-                            <p>22</p>
-                            <span>Hours</span>
+
+                        {/* Current bid price */}
+                        <div className={Style.NFTDescription_box_profile_biding_box_price}>
+                            <div className={Style.NFTDescription_box_profile_biding_box_price_bid}>
+                                <small>Current Bid</small>
+                                <p>1.000 ETH <span>(= $3, 221.22)</span></p>
+                            </div>
+
+                            <span>[96 in stock]</span>
                         </div>
-                        <div className={Style.NFTDescription_box_profile_biding_box_timer_item}>
-                            <p>45</p>
-                            <span>Mins</span>
+
+                        {/* Bid and offer buttons */}
+                        <div className={Style.NFTDescription_box_profile_biding_box_button}>
+                            <Button 
+                                icon=<FaWallet/> 
+                                btnName="Place a bid"
+                                handleClick={() => {}}
+                                classStyle={Style.button}
+                            />
+                            <Button 
+                                icon=<FaPercentage/> 
+                                btnName="Make offer"
+                                handleClick={() => {}}
+                                classStyle={Style.button}
+                            />
                         </div>
-                        <div className={Style.NFTDescription_box_profile_biding_box_timer_item}>
-                            <p>22</p>
-                            <span>Secs</span>
+
+                        {/* Tabs for bid history, provanance, and owner */}
+                        <div className={Style.NFTDescription_box_profile_biding_box_tabs}>
+                            <button onClick={(e) => openTabs(e)}>Bid History</button>
+                            <button onClick={(e) => openTabs(e)}>Provanance</button>
+                            <button onClick={(e) => openOwner()}>Owner</button>
                         </div>
+
+                        {/* Content for each tab */}
+                        {history && (
+                            <div className={Style.NFTDescription_box_profile_biding_box_card}>
+                                <NFTTabs dataTab= {historyArray}/>
+                            </div>
+                        )}
+                        {provanance && (
+                            <div className={Style.NFTDescription_box_profile_biding_box_card}>
+                                <NFTTabs dataTab= {provananceArray}/>
+                            </div>
+                        )}
+                        {owner && (
+                            <div className={Style.NFTDescription_box_profile_biding_box_card}>
+                                <NFTTabs dataTab= {ownerArray} icon=<MdVerified/> />
+                            </div>
+                        )}
                     </div>
-
-                    <div className={Style.NFTDescription_box_profile_biding_box_price}>
-                        <div className={Style.NFTDescription_box_profile_biding_box_price_bid}>
-                            <small>Current Bid</small>
-                            <p>
-                                1.000 ETH <span>(= $3, 221.22)</span>
-                            </p>
-                        </div>
-
-                        <span>[96 in stock]</span>
-                    </div>
-
-                    <div className={Style.NFTDescription_box_profile_biding_box_button}>
-                        <Button 
-                            icon=<FaWallet/> 
-                            btnName="Place a bid"
-                            handleClick={() => {}}
-                            classStyle={Style.button}
-                        />
-                        <Button 
-                            icon=<FaPercentage/> 
-                            btnName="Make offer"
-                            handleClick={() => {}}
-                            classStyle={Style.button}
-                        />
-                    </div>
-
-                    <div className={Style.NFTDescription_box_profile_biding_box_tabs}>
-                        <button onClick={(e) => openTabs(e)}>Bid History</button>
-                        <button onClick={(e) => openTabs(e)}>Provanance</button>
-                        <button onClick={(e) => openOwner()}>Owner</button>
-                    </div>
-
-                    {history && (
-                        <div className={Style.NFTDescription_box_profile_biding_box_card}>
-                            <NFTTabs dataTab= {historyArray}/>
-                        </div>
-                    )}
-                    {provanance && (
-                        <div className={Style.NFTDescription_box_profile_biding_box_card}>
-                            <NFTTabs dataTab= {provananceArray}/>
-                        </div>
-                    )}
-                    {owner && (
-                        <div className={Style.NFTDescription_box_profile_biding_box_card}>
-                            <NFTTabs dataTab= {ownerArray} icon=<MdVerified/> />
-                        </div>
-                    )}
-                </div>
                 </div>
             </div>
         </div>
-    )
+    );
 };
 
 export default NFTDescription;

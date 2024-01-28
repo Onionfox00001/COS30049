@@ -92,7 +92,7 @@
     padding-right: 0.75rem;
     font-size: 0.875rem;
     line-height: 1.25rem;
-    color: black;
+    color: rgba(156, 163, 175, 1);
 }
 
 .SignUp_box_social_icons {
@@ -117,13 +117,30 @@
     text-align: center;
     font-size: 1rem;
     line-height: 1rem;
-    color: black;
+    color: rgba(156, 163, 175, 1);
 }
 
 .SignUp_box_link p{
     font-size: 0.875rem;
 }
 
+.SignUp_box_link a{
+    color: black;
+}
+
 .SignUp_box_link a:hover{
     text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .SignUp_box {
+        width: 60%;
+    }
+}
+
+@media (max-width: 576px) {
+    .SignUp_box {
+        width: 70%;
+        padding: 1rem;
+    }
 }

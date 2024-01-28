@@ -39,7 +39,7 @@ const SideBar = ({setOpenSideMenu}) => {
     },
     {
       name: "Connect Wallet",
-      link: "connect-wallet",
+      link: "connectWallet",
     },
   ]
   // HELP CENTER MENU
@@ -50,11 +50,11 @@ const SideBar = ({setOpenSideMenu}) => {
     },
     {
       name: "Sign Up",
-      link: "sign-up",
+      link: "signup",
     },
     {
       name: "Sign In",
-      link: "sign-in",
+      link: "signin",
     },
   ]
 

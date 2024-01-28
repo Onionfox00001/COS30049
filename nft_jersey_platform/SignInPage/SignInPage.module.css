@@ -137,3 +137,16 @@
 .SignIn_box_link a:hover {
     text-decoration: none;
 }
+
+@media (max-width: 768px) {
+    .SignIn_box {
+        width: 60%;
+    }
+}
+
+@media (max-width: 576px) {
+    .SignIn_box {
+        width: 70%;
+        padding: 1rem;
+    }
+}

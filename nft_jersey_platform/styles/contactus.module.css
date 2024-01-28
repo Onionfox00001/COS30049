@@ -32,6 +32,11 @@
     line-height: 1.5;
 }
 
+.contactus_aboutus_box_hero_right_img {
+    width: 100%;
+    height: auto;
+}
+
 .contactus_aboutus_box_title {
     margin-top: 5rem;
 }
@@ -148,12 +153,12 @@
         gap: 1rem;
     }
 
-    .contactus_aboutus_hero {
-        grid-template-columns: 1fr ;
-    }
-
     .contactus_aboutus_box_title p{
         width: 100%;
+    }
+
+    .contactus_aboutus_box_hero {
+        display: block;
     }
 
     .contactus_aboutus_box_founder {
@@ -177,7 +182,7 @@
     }
 }
 
-@media screen and (max-width: 445px) and (max-width:768px){
+@media screen and (min-width: 445px) and (max-width:768px){
 
     .contactus_aboutus_box {
         width: 90%;
