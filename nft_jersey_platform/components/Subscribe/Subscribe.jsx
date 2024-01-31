@@ -29,7 +29,7 @@ const Subscribe = () => {
                 </div>
 
                 <div className = {Style.subscribe_box_right}>
-                    <Image src = {images.update} alt = "get update" height = {600} width = {800} />
+                    <Image src = {images.update} alt = "get update" height = {600} width = {700} />
                 </div>
             </div>
         </div>
