@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {FaFilter, FaAngleDown, FaAngleUp, FaWallet, FaMusic, FaVideo, FaImages, FaUserAlt} from 'react-icons/fa';
+import {FaFilter, FaAngleDown, FaAngleUp, FaWallet, FaUserAlt, FaCoins, FaLanguage} from 'react-icons/fa';
 import {AiFillCloseCircle} from 'react-icons/ai';
 import {MdVerified} from 'react-icons/md';
 import {TiTick} from 'react-icons/ti';
@@ -9,9 +9,9 @@ import Style from "./Filter.module.css";
 
 const Filter = () => {
     const [filter, setFilter] = useState(true);
-    const [image, setImage] = useState(true);
-    const [video, setVideo] = useState(true);
-    const [music, setMusic] = useState(true);
+    const [price1, setPrice1] = useState(true);
+    const [price2, setPrice2] = useState(true);
+    const [letter, setLetter] = useState(true);
   
   //FUNCTION SECTION 
   const openFilter = () => {
@@ -22,27 +22,27 @@ const Filter = () => {
     }
   };
 
-  const openImage =() => {
-    if (!image) {
-      setImage(true);
+  const openPrice1 =() => {
+    if (!price1) {
+      setPrice1(true);
     } else {
-      setImage(false);
+      setPrice1(false);
     }
   };
 
-  const openVideo =() => {
-    if (!video) {
-      setVideo(true);
+  const openPrice2 =() => {
+    if (!price2) {
+      setPrice2(true);
     } else {
-      setVideo(false);
+      setPrice2(false);
     }
   };
 
-  const openMusic =() => {
-    if (!music) {
-      setMusic(true);
+  const openLetter =() => {
+    if (!letter) {
+      setLetter(true);
     } else {
-      setMusic(false);
+      setLetter(false);
     }
   };
 
@@ -80,30 +80,30 @@ const Filter = () => {
             <div className={Style.filter_box_items_box}>
               <div 
                 className={Style.filter_box_items_box_item_trans}
-                onClick={() => openImage()}
+                onClick={() => openPrice1()}
               >
-                <FaImages /> <small>Images</small>
-                {image ? <AiFillCloseCircle /> : <TiTick />}
+                <FaCoins /> <small>High - Low</small>
+                {price1 ? <AiFillCloseCircle /> : <TiTick />}
               </div>
             </div>  
 
             <div className={Style.filter_box_items_box}>
               <div 
                 className={Style.filter_box_items_box_item_trans}
-                onClick={() => openVideo()}
+                onClick={() => openPrice2()}
               >
-                <FaVideo /> <small>Videos</small>
-                {video ? <AiFillCloseCircle /> : <TiTick />}
+                <FaCoins /> <small>Low - High</small>
+                {price2 ? <AiFillCloseCircle /> : <TiTick />}
               </div>
             </div>
 
             <div className={Style.filter_box_items_box}>
               <div 
                 className={Style.filter_box_items_box_item_trans}
-                onClick={() => openMusic()}
+                onClick={() => openLetter()}
               >
-                <FaMusic /> <small>Music</small>
-                {music ? <AiFillCloseCircle /> : <TiTick />}
+                <FaLanguage /> <small>A - Z</small>
+                {letter ? <AiFillCloseCircle /> : <TiTick />}
               </div>
             </div>
 
