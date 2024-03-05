@@ -1,5 +1,10 @@
 .NFTDetailsImg{
+<<<<<<< Updated upstream
     width: 100%;
+=======
+    width: 83%;
+    margin: 0 auto;
+>>>>>>> Stashed changes
 }
 
 .NFTDetailsImg_box_NFT{
@@ -16,6 +21,7 @@
     
 }
 
+<<<<<<< Updated upstream
 .NFTDetailsImg_box_NFT_like{
     display: flex;
     align-items: center;
@@ -41,6 +47,8 @@
 .NFTDetailsImg_box_NFT_like_icon{
     font-size: 1.4rem;
 }
+=======
+>>>>>>> Stashed changes
 
 .NFTDetailsImg_box_details,
 .NFTDetailsImg_box_description{

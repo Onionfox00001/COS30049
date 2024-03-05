@@ -10,6 +10,7 @@ import Form from "../AccountPage/Form/Form"; // Importing the Form component
 
 // Define the account component
 const account = () => {
+<<<<<<< Updated upstream
     // State variable to store the uploaded file URL
     const [fileUrl, setFileUrl] = useState(null);
 
@@ -24,6 +25,8 @@ const account = () => {
         accept: "image/*", // Accept only image files
         maxSize: 5000000, // Set maximum file size to 5MB
     });
+=======
+>>>>>>> Stashed changes
 
     // Render the account component
     return (
@@ -36,8 +39,12 @@ const account = () => {
 
             <div className={Style.account_box}>
                 {/* Image upload section */}
+<<<<<<< Updated upstream
                 <div className={Style.account_box_img} {...getRootProps()}>
                     <input {...getInputProps()} /> {/* Input element to handle file selection */}
+=======
+                <div className={Style.account_box_img} >
+>>>>>>> Stashed changes
                     {/* Display the current profile image or placeholder */}
                     <Image
                         src={images.user1}
@@ -46,7 +53,10 @@ const account = () => {
                         height={150}
                         className={Style.account_box_img_img}
                     />
+<<<<<<< Updated upstream
                     <p className={Style.account_box_img_para}>Change Image</p> {/* Text for changing image */}
+=======
+>>>>>>> Stashed changes
                 </div>
 
                 {/* Form section */}

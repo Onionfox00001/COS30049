@@ -32,6 +32,7 @@ const NFTDetailsImg = () => {
     <div className={Style.NFTDetailsImg}> {/* Container for NFT details */}
       <div className={Style.NFTDetailsImg_box}> {/* Box for NFT details */}
         <div className={Style.NFTDetailsImg_box_NFT}> {/* NFT section */}
+<<<<<<< Updated upstream
           <div className={Style.NFTDetailsImg_box_NFT_like}> {/* Like section */}
             <BsImages className={Style.NFTDetailsImg_box_NFT_like_icon} /> {/* Image icon */}
             <p onClick={() => likeNFT()}> {/* Like button */}
@@ -43,6 +44,9 @@ const NFTDetailsImg = () => {
               <span>23</span> {/* Like count */}
             </p>
           </div>
+=======
+          
+>>>>>>> Stashed changes
 
           <div className={Style.NFTDetailsImg_box_NFT_img}> {/* NFT image */}
             <Image
