@@ -175,65 +175,22 @@ const NFTDescription = () => {
 
                     {/* Bidding details */}
                     <div className={Style.NFTDescription_box_profile_biding}>
-<<<<<<< Updated upstream
-                        <p><MdTimer/> <span>Auction ending in:</span></p>
-
-                        {/* Timer */}
-                        <div className={Style.NFTDescription_box_profile_biding_box_timer}>
-                            {/* Time units */}
-                            <div className={Style.NFTDescription_box_profile_biding_box_timer_item}>
-                                <p>2</p>
-                                <span>Days</span>
-                            </div>
-                            <div className={Style.NFTDescription_box_profile_biding_box_timer_item}>
-                                <p>22</p>
-                                <span>Hours</span>
-                            </div>
-                            <div className={Style.NFTDescription_box_profile_biding_box_timer_item}>
-                                <p>45</p>
-                                <span>Mins</span>
-                            </div>
-                            <div className={Style.NFTDescription_box_profile_biding_box_timer_item}>
-                                <p>22</p>
-                                <span>Secs</span>
-                            </div>
-                        </div>
-=======
                         
->>>>>>> Stashed changes
 
                         {/* Current bid price */}
                         <div className={Style.NFTDescription_box_profile_biding_box_price}>
                             <div className={Style.NFTDescription_box_profile_biding_box_price_bid}>
-<<<<<<< Updated upstream
-                                <small>Current Bid</small>
-                                <p>1.000 ETH <span>(= $3, 221.22)</span></p>
-                            </div>
-
-                            <span>[96 in stock]</span>
-=======
                                 <small>Current Price</small>
                                 <p>1.000 ETH <span>(= $3, 221.22)</span></p>
                             </div>
 
->>>>>>> Stashed changes
                         </div>
 
                         {/* Bid and offer buttons */}
                         <div className={Style.NFTDescription_box_profile_biding_box_button}>
                             <Button 
                                 icon=<FaWallet/> 
-<<<<<<< Updated upstream
-                                btnName="Place a bid"
-                                handleClick={() => {}}
-                                classStyle={Style.button}
-                            />
-                            <Button 
-                                icon=<FaPercentage/> 
-                                btnName="Make offer"
-=======
                                 btnName="Buy Now"
->>>>>>> Stashed changes
                                 handleClick={() => {}}
                                 classStyle={Style.button}
                             />

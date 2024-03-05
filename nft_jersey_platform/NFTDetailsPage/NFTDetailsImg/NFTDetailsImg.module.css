@@ -1,10 +1,6 @@
 .NFTDetailsImg{
-<<<<<<< Updated upstream
-    width: 100%;
-=======
     width: 83%;
     margin: 0 auto;
->>>>>>> Stashed changes
 }
 
 .NFTDetailsImg_box_NFT{
@@ -21,34 +17,6 @@
     
 }
 
-<<<<<<< Updated upstream
-.NFTDetailsImg_box_NFT_like{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    grid-column: 1 / -1;
-    grid-row: 1 / end;
-    z-index: 111111;
-    align-self: flex-start;
-    padding-inline: 2rem;
-}
-
-.NFTDetailsImg_box_NFT_like p{
-    background-color: var(--icons-color);
-    padding: .2rem 1rem;
-    color: var(--main-bg-color);
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-    border-radius: 2rem;
-    cursor: pointer;
-}
-
-.NFTDetailsImg_box_NFT_like_icon{
-    font-size: 1.4rem;
-}
-=======
->>>>>>> Stashed changes
 
 .NFTDetailsImg_box_details,
 .NFTDetailsImg_box_description{
