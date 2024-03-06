@@ -30,13 +30,8 @@ const SliderCard = ({ imageSrc, title, currentBid, remainingTime }) => {
 
                 <div className={Style.sliderCard_box_price}>
                     <div className={Style.sliderCard_box_price_box}>
-                        <small>Current Bid</small>
+                        <small>Buy Now</small>
                         <p>{currentBid}</p>
-                    </div>
-
-                    <div className={Style.sliderCard_box_price_time}>
-                        <small>Remaining time</small>
-                        <p>{remainingTime}</p>
                     </div>
                 </div>
             </div>
