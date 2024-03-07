@@ -76,30 +76,33 @@ data_user = [
     ("erudge9", "dJ4+A4MA'6p", "rtukely9@shop-pro.jp", 100, "49-836-0912")
 ]
 
-data_product = [
-    ("https://drive.google.com/file/d/12PMJ7xKxWz9oT1rreNFlQDm2MgFI278l/view?usp=sharing", "2006-07 Liverpool Home Shirt Alonso #14", "0.2", "2006-07 Liverpool Home Shirt Alonso #14", "1", "08-198-0807"),
-    ("https://drive.google.com/file/d/1kvpV-bq2voNtLF2phPSs7Fixaj7U5qMO/view?usp=sharing", "2004 Italy Home Shirt Baggio #10", "0.18", "2004 Italy Home Shirt Baggio #10", "2", "48-728-3727"),
-    ("https://drive.google.com/file/d/1bEvf-pmY7fG93sOAZ9ar3w4JeKMfTX3Z/view?usp=sharing", "1988 Netherlands Home Shirt Van Basten #12", "0.25", "1988 Netherlands Home Shirt Van Basten #12", "3", "89-467-8114"),
-    ("https://drive.google.com/file/d/1517x4uq09sPDPXg-MAnY3p8ieACMt5rH/view?usp=sharing", "2002 England Home Shirt Beckham #7", "0.3", "2002 England Home Shirt Beckham #7", "4", "42-756-0746"),
-    ("https://drive.google.com/file/d/1qy2eyfYfytmpp7boy42k8HeYcO87qBuq/view?usp=sharing", "2003-04 Arsenal Home Shirt Bergkamp #10", "0.22", "2003-04 Arsenal Home Shirt Bergkamp #10", "5", "28-930-8623"),
-    ("https://drive.google.com/file/d/1WVF2cspkBbm_ZWAMNIsqb7QzOIJa3kNu/view?usp=sharing", "1970 Brazil Home Shirt Cafu #2", "0.19", "1970 Brazil Home Shirt Cafu #2", "6", "72-783-1511"),
-    ("https://drive.google.com/file/d/1AJESc7TrvoaGmBjneiY3vqEu4wiNWZBg/view?usp=sharing", "2011-12 Chelsea Home Shirt Drogba #11", "0.11", "2011-12 Chelsea Home Shirt Drogba #11", "7", "41-801-8415"),
-    ("https://drive.google.com/file/d/1jlMqR4LlUU6FD9FqS_FWdwk4gxDpp6Z_/view?usp=sharing", "2013-14 Barcelona Home Shirt Iniesta #8", "0.15", "2013-14 Barcelona Home Shirt Iniesta #8", "9", "40-393-4278"),
-    ("https://drive.google.com/file/d/1NFXhoNXt0wGJjHlVZigu9RNlYIqOeKrO/view?usp=sharing", "1990 Germany Home Shirt Matthaus #10", "0.16", "1990 Germany Home Shirt Matthaus #10", "10", "20-109-3675"),
-    ("https://drive.google.com/file/d/1VIuJH7y3q6K5Oue8q257XZq56Lnfdswz/view?usp=sharing", "2022-23 PSG Home Shirt Mbappe #10", "0.27", "2022-23 PSG Home Shirt Mbappe #10", "11", "49-836-0912"),
-    ("https://drive.google.com/file/d/1G9OiZSPUQsp-YMVHa2IPIjU9V5LSuBGl/view?usp=sharing", "2022 Argentina Home Shirt Messi #10", "0.32", "2022 Argentina Home Shirt Messi #10", "12", "08-198-0807"),
-    ("https://drive.google.com/file/d/1DXRK_QjTZfgi2_Chd3vsWrWVcM5oVbRk/view?usp=sharing", "2012-13 Manchester United Home Shirt Van Persie #20", "0.4", "2012-13 Manchester United Home Shirt Van Persie #20", "13", "48-728-3727"),
-    ("https://drive.google.com/file/d/1zuxXP__1b4SGzTQiUasDdbFyssMvHjfv/view?usp=sharing", "1995-96 Juventus Home Shirt Piero #10", "0.19", "1995-96 Juventus Home Shirt Piero #10", "14", "89-467-8114"),
-    ("https://drive.google.com/file/d/1c8OA2ycKdGQpDaXN7HiaUttB5ryHbZSN/view?usp=sharing", "2006-07 AC Milan Home Shirt Pirlo #21", "0.31", "2006-07 AC Milan Home Shirt Pirlo #21", "15", "42-756-0746"),
-    ("https://drive.google.com/file/d/1Ud1tIr3S_Ga89InrnyHKVr6AqjpOWTWt/view?usp=sharing", "2002 Brazil Home Shirt Ronaldinho #10", "0.33", "2002 Brazil Home Shirt Ronaldinho #10", "16", "28-930-8623"),
-    ("https://drive.google.com/file/d/1Gkhg1k9MFoK3gT_Vrve9PRA1dOpb8mof/view?usp=sharing", "2016-17 Real Madrid Home Shirt Cristiano Ronaldo #7", "0.7", "2016-17 Real Madrid Home Shirt Cristiano Ronaldo #7", "17", "72-783-1511"),
-    ("https://drive.google.com/file/d/1qUOHWGTRZAtEog_xHKHLntm5-1VXF1Vf/view?usp=sharing", "1998-99 Inter Milan Home Shirt Ronaldo #9", "0.45", "1998-99 Inter Milan Home Shirt Ronaldo #9", "18", "41-801-8415"),
-    ("https://drive.google.com/file/d/1E5VJg2Bv2WoHqgpbH3MeIQbYK6ZTThMi/view?usp=sharing", "1999-2000 Manchester United Home Shirt Schmeichel #1", "0.12", "1999-2000 Manchester United Home Shirt Schmeichel #1", "19", "40-393-4278"),
-    ("https://drive.google.com/file/d/11TQlTEC7XqPNNzr75v5_gRcsXs6CmBG5/view?usp=sharing", "2000 Netherlands Home Shirt Seedorf #10", "0.41", "2000 Netherlands Home Shirt Seedorf #10", "20", "20-109-3675"),
-    ("https://drive.google.com/file/d/1fGcqpzw2nIqYmNhgeWdO7kPboG464K9l/view?usp=sharing", "1998 France Home Shirt Vieira #4", "0.7", "1998 France Home Shirt Vieira #4", "21", "49-836-0912"),
-    ("https://drive.google.com/file/d/1S6fL6NV8c965hNSz5SpUSPJ7A-PdG55E/view?usp=sharing", "2008-09 Barcelona Home Shirt Xavi #6", "0.6", "2008-09 Barcelona Home Shirt Xavi #6", "22", "48-728-3727"),
-    ("https://drive.google.com/file/d/1E5VJg2Bv2WoHqgpbH3MeIQbYK6ZTThMi/view?usp=sharing", "1998 France Home Shirt Zidane #10", "0.65", "1998 France Home Shirt Zidane #10", "23", "28-930-8623")
+data_product =[
+    ("https://lh3.googleusercontent.com/drive-viewer/AKGpihYzXjRrdk-lWAK4B0gihZ69J9GP2SvPgD4bSV9UpWkRei8lTXtQiYcPuzOOwpmWjO24cKF2V8dnnw979NMO3XL04CHozQ=s2560", "2006-07 Liverpool Home Shirt Alonso #14", "0.2", "2006-07 Liverpool Home Shirt Alonso #14", "1", "08-198-0807"),
+    ("https://lh3.googleusercontent.com/drive-viewer/AKGpiha-APyEzu9oAtOseXvFyGAnGpc8tVIQGI7ep4dl21qiFRoJoaMSrCnOFhIJgqJXO76DFtPCo32hWW-k1TGwzhxmNsF6=s2560", "2004 Italy Home Shirt Baggio #10", "0.18", "2004 Italy Home Shirt Baggio #10", "2", "48-728-3727"),
+    ("https://lh3.googleusercontent.com/drive-viewer/AKGpiha7oKTwBq5AbkrDjQ_QF9lsmbivTZX1qz70RXF-Dhz55rSGhDJ7Hkv8XxybTrRlPp0AjhHK7KSZxB1ZS0eP9eaWv9Gw=s2560", "1988 Netherlands Home Shirt Van Basten #12", "0.25", "1988 Netherlands Home Shirt Van Basten #12", "3", "89-467-8114"),
+    ("https://lh3.googleusercontent.com/drive-viewer/AKGpihaWe4s9w-LU_6O7IYKYjBEk0CvcTS8Arosnd3ycXj1TsUyacdUz9ZVx0OLewlTYg-ds9c1BIaZeXyxaTOzUUENL30cy=s2560", "2002 England Home Shirt Beckham #7", "0.3", "2002 England Home Shirt Beckham #7", "4", "42-756-0746"),
+    ("https://lh3.googleusercontent.com/drive-viewer/AKGpihaYGBqivtni9jPzYglqzXiq-svNO2aGRcBj4Y3qEkErXoFlq7b09nQ7_ClbGVWRZCS-Td-dy-1LWt7wC_0iLW7EbgmgSA=s2560", "2003-04 Arsenal Home Shirt Bergkamp #10", "0.22", "2003-04 Arsenal Home Shirt Bergkamp #10", "5", "28-930-8623"),
+    ("https://lh3.googleusercontent.com/drive-viewer/AKGpihbd7JRRKEPI1ny_H1MyYB1J5ej2AexXGTGnlGHe8EOPnDqbeRkGqYLaIbLE7ujU8usPCYki99os3S3g61lBbbwWzKFwYQ=s2560", "1970 Brazil Home Shirt Cafu #2", "0.19", "1970 Brazil Home Shirt Cafu #2", "6", "72-783-1511"),
+    ("https://lh3.googleusercontent.com/drive-viewer/AKGpihbLbxh-IlOldtTRK8TvH9K5iAnR5-ZWTmJfZKz98Kgvhd36R5ggz8tvj8Yi8sno1N4OFbz_8a3jO2mBOnOS4fCV-95Ctg=s2560", 
+    "2011-12 Chelsea Home Shirt Drogba #11", "0.11", "2011-12 Chelsea Home Shirt Drogba #11", "7", "41-801-8415"),
+    ("https://lh3.googleusercontent.com/drive-viewer/AKGpihZgMw0HS1MvnGxtZ41mvQ3IasK6P6DBZNF_7k-OeK-rVXvLLD4mzNK6xUC6AV3K1wt0bHG0pxpx99b7DpruFTOfjE-xoA=s2560", "2013-14 Barcelona Home Shirt Iniesta #8", "0.15", "2013-14 Barcelona Home Shirt Iniesta #8", "8", "40-393-4278"),
+    ("https://lh3.googleusercontent.com/drive-viewer/AKGpihZuM9zyKzMNLgx_mNP6oHHUcZfTjf3cDwRmJUX6_JtkTjGYHITDYmOH7-KRoPQHckvHvIIwAUZ-9q9fyBoDUENd4WO-_Q=s2560", "1990 Germany Home Shirt Matthaus #10", "0.16", "1990 Germany Home Shirt Matthaus #10", "9", "20-109-3675"),
+    ("https://lh3.googleusercontent.com/drive-viewer/AKGpihaCPpeZNLdXEMYX04IEoDLrbK7Uy5nfURsKo3vnOTDO4e9nT_wbeT_nb_nbHhg0jh__qBrfc5faXNKEmf5oXCUubYf_tw=s2560", "2022-23 PSG Home Shirt Mbappe #10", "0.27", "2022-23 PSG Home Shirt Mbappe #10", "10", "49-836-0912"),
+    ("https://lh3.googleusercontent.com/drive-viewer/AKGpihZLBBRjve4aw5WvKyieNT6ePMOxOZYqsyasW11vGh_lYsslQqm1qYka1Zsqf08_kx1T6zykPUh1Oy25JVWf40DBnh7npA=s2560", "2022 Argentina Home Shirt Messi #10", "0.32", "2022 Argentina Home Shirt Messi #10", "11", "08-198-0807"),
+    ("https://lh3.googleusercontent.com/drive-viewer/AKGpihaJZqtXqrRzANfmTXBn19leh0bfm-WfoNsFl7lFnMufVJO3YxvYHkDEoicZUssgNc3vTH8_JfSGMc8MnU7A-8pN1m4pOQ=s1600", "2012-13 Manchester United Home Shirt Van Persie #20", "0.4", "2012-13 Manchester United Home Shirt Van Persie #20", "12", "48-728-3727"),
+    ("https://lh3.googleusercontent.com/drive-viewer/AKGpiha6YoFCyltYXErUE301ajxHoI29tMvnb-AKP5UdbK2STVYmYv3oN6oYipLOF7s6Lx8SqCY3-oFmt3Ofo5HyvP5Pe-xXNQ=s2560", "1995-96 Juventus Home Shirt Piero #10", "0.19", "1995-96 Juventus Home Shirt Piero #10", "13", "89-467-8114"),
+    ("https://lh3.googleusercontent.com/drive-viewer/AKGpihaoEYPXdkGt3EJYEv7AKi_E301PgP1EwchZgfA40rZfpBDAAqSwqAczklIw-mk6s8KGCUb8liEaM66-NWR_VkWYJ3Xh=s2560", "2006-07 AC Milan Home Shirt Pirlo #21", "0.31", "2006-07 AC Milan Home Shirt Pirlo #21", "14", "42-756-0746"),
+    ("https://lh3.googleusercontent.com/drive-viewer/AKGpihZiwsSPrg5vbUQSOPu6sDovtnydxiH8M3QWS1pFrU74p8BOPcj-LuCpalLmC9bPaAKPYGsK0M2pjaFxekSXZIti8TT23A=s1600", "2002 Brazil Home Shirt Ronaldinho #10", "0.33", "2002 Brazil Home Shirt Ronaldinho #10", "15", "28-930-8623"),
+    ("https://lh3.googleusercontent.com/drive-viewer/AKGpihbhIJkf6EGoFcfHTcxdTYz9NOv0ruQIWJ9UeRorIagmQw-c5JlkbngC9v0r0CIVfmo-ARbA6CpbTZN3FPziTCCEkb1bEw=s1600", "2016-17 Real Madrid Home Shirt Cristiano Ronaldo #7", "0.7", "2016-17 Real Madrid Home Shirt Cristiano Ronaldo #7", "16", "72-783-1511"),
+    ("https://lh3.googleusercontent.com/drive-viewer/AKGpihaUrG4qz9A7Ii3BuIJbKbuc-Sij_vSiZTtOesgKeDaAIyLVfY1axuyp9BefXZJrzQ5j_SH1dUcfuTKsry124SSygGI9UQ=s2560", "1998-99 Inter Milan Home Shirt Ronaldo #9", "0.45", "1998-99 Inter Milan Home Shirt Ronaldo #9", "17", "41-801-8415"),
+    ("https://lh3.googleusercontent.com/drive-viewer/AKGpihYVxnSeSz1-fNNnSg5Hlz6IC6EV7Z9bQ-LCkC5Gzt2qO8ehX7DSZ8PyNuUE0ihUJSLIoaRh-yIwNoLhpnQFg6njZTi1fA=s2560", "1999-2000 Manchester United Home Shirt Schmeichel #1", "0.12", "1999-2000 Manchester United Home Shirt Schmeichel #1", "18", "40-393-4278"),
+    ("https://lh3.googleusercontent.com/drive-viewer/AKGpihZSH5tZ_C5oyRis1lKm2C70XVKsW-jtHmfKBr2MhaA2XhIbeI9pSFf_H7T-HWX3yDh_U4os1vPCSStjpcUTABlVjrXP=s2560", "2000 Netherlands Home Shirt Seedorf #10", "0.41", "2000 Netherlands Home Shirt Seedorf #10", "19", "20-109-3675"),
+    ("https://lh3.googleusercontent.com/drive-viewer/AKGpihaR8QmuKTQmD-LlUgFnaTjCgqCjObAJa3U1a7qguJlImubXU-F_5li8dHjMKvHkGuz4ftXbiMnya-WEqvNKAK-R3Psp=s2560", "2001-02 AS Roma Home Shirt Totti #10", "0.38", "2001-02 AS Roma Home Shirt Totti #10", "20", "20-109-3675"),
+    ("https://lh3.googleusercontent.com/drive-viewer/AKGpihZnBDxJvuinWKEzS_Q_DQNXrGXT1br-9DmGJb9jv8xspH444witz9iYUATo9YKuhSt31D5OzPg8rGZSNc_IzPoxx3_Kwg=s2560", "1998 France Home Shirt Vieira #4", "0.7", "1998 France Home Shirt Vieira #4", "21", "49-836-0912"),
+    ("https://lh3.googleusercontent.com/drive-viewer/AKGpihb0LgDuHuxVoouHryybMRdG2fOObrkFTSM8yrcc3PjafGwwJ1NuIrk_peXb8eNKcNd4-72-VrbeIsK1_ArtN35If7HSaw=s1600", "2008-09 Barcelona Home Shirt Xavi #6", "0.6", "2008-09 Barcelona Home Shirt Xavi #6", "22", "48-728-3727"),
+    ("https://lh3.googleusercontent.com/drive-viewer/AKGpihacQe-xNrwVWqVVj42x8wT0-AIpoydAGORFm73Wziz3Q_RT7dGSwxBjOkqbBAquRrudOtxmIFNuEdhzzVqDxY2mhbv5DQ=s2560", "1998 France Home Shirt Zidane #10", "0.65", "1998 France Home Shirt Zidane #10", "23", "28-930-8623")
 ]
+
 
 # SQL query to insert the data
 query_user_info = ("INSERT INTO user_info "
