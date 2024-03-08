@@ -1,29 +1,75 @@
+from flask import Flask, jsonify
+from flask_cors import CORS
 import mysql.connector
 
-# Establish the connection
-db = mysql.connector.connect(
-    host="feenix-mariadb.swin.edu.au",
-    user="s104177995",
-    password="180804",
-    database="s104177995_db"
-)
+app = Flask(__name__)
+CORS(app)
 
-# Create a new cursor
-cursor = db.cursor()
+@app.route('/products', methods=['GET'])
+def get_products():
+    # Establish the connection
+    db = mysql.connector.connect(
+        host="feenix-mariadb.swin.edu.au",
+        user="s104177995",
+        password="180804",
+        database="s104177995_db"
+    )
 
-# SQL query to fetch the required data
-query = "SELECT image, title, price FROM product"
+    # Create a new cursor
+    cursor = db.cursor()
 
-# Execute the query
-cursor.execute(query)
+    # SQL query to fetch the required data
+    query = "SELECT image, title, price, nft_token_id FROM product"
 
-# Fetch all the rows
-rows = cursor.fetchall()
+    # Execute the query
+    cursor.execute(query)
 
-# Now 'rows' is a list of tuples, where each tuple is a row from the table
-# For example, to print all the rows:
-for row in rows:
-    print(f"Image URL: {row[0]}, Title: {row[1]}, Price: {row[2]}")
+    # Fetch all the rows
+    rows = cursor.fetchall()
 
-# Don't forget to close the connection
-db.close()
+    # Convert rows into a list of dictionaries
+    products = [{"image": row[0], "title": row[1], "price": row[2], "nft_token_id": row[3]} for row in rows]
+
+    # Don't forget to close the connection
+    db.close()
+
+    # Return the product data as JSON
+    return jsonify(products)
+
+@app.route('/products/<int:id>', methods=['GET'])
+def get_product(id):
+    # Establish the connection
+    db = mysql.connector.connect(
+        host="feenix-mariadb.swin.edu.au",
+        user="s104177995",
+        password="180804",
+        database="s104177995_db"
+    )
+
+    # Create a new cursor
+    cursor = db.cursor()
+
+    # SQL query to fetch the required data
+    query = "SELECT image, title, price, description, nft_token_id, owner_blockchain_id FROM product WHERE nft_token_id = %s"
+
+    # Execute the query
+    cursor.execute(query, (id,))
+
+    # Fetch the first row
+    row = cursor.fetchone()
+
+    # Check if a row was returned
+    if row is None:
+        return jsonify({"error": "Product not found"}), 404
+
+    # Convert row into a dictionary
+    product = {"image": row[0], "title": row[1], "price": row[2], "description": row[3], "nft_token_id": row[4], "owner_blockchain_id": row[5]}
+
+    # Don't forget to close the connection
+    db.close()
+
+    # Return the product data as JSON
+    return jsonify(product)
+
+if __name__ == '__main__':
+    app.run(debug=True)

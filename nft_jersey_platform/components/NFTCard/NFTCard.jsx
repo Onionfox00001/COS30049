@@ -1,47 +1,52 @@
-import React, { useState } from "react";
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
-import { BsImage } from 'react-icons/bs';
-import Image from "next/image";
-
-//INTERNAL IMPORT
+import React, { useEffect, useState } from 'react';
 import Style from "./NFTCard.module.css";
-import images from '../../img';
-import { ST } from "next/dist/shared/lib/utils";
+import Image from 'next/image';
+import Link from 'next/link';
 
 const NFTCard = () => {
-    const featureArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const [products, setProducts] = useState([]);
 
-  return (
-    <div className={Style.NFTCard}>
-        {featureArray.map((el, i) => (
-            <div className={Style.NFTCard_box} key={i+1}>
-                <div className={Style.NFTCard_box_img}>
-                    <Image src="https://lh3.googleusercontent.com/drive-viewer/AKGpihYzXjRrdk-lWAK4B0gihZ69J9GP2SvPgD4bSV9UpWkRei8lTXtQiYcPuzOOwpmWjO24cKF2V8dnnw979NMO3XL04CHozQ=s2560"
-                    alt="NFT images" 
-                    width={400} 
-                    height={400}
-                    className={Style.NFTCard_box_img_img}
-                    />
-                </div>
+    useEffect(() => {
+        fetch('http://127.0.0.1:5000/products')
+            .then(response => response.json())
+            .then(data => setProducts(data))
+            .catch(error => console.error('There has been a problem with your fetch operation:', error));
+    }, []);
 
-                <div className={Style.NFTCard_box_update_details}>
-                    <div className={Style.NFTCard_box_update_details_price}>
-                        <div className={Style.NFTCard_box_update_details_price_box}>
-                            <h4>Jersey #2201</h4>
+    return (
+        <div className={Style.NFTCard}>
+            {products.map((product, i) => (
+                <Link href={`/NFT-details?nft_token_id=${product.nft_token_id}`} key={i} className={Style.NFTCard_link}>
+                    <div className={Style.NFTCard_box} key={i}>
+                        <div className={Style.NFTCard_box_img}>
+                            <Image 
+                                src={product.image} 
+                                alt="NFT images" 
+                                width={400} 
+                                height={400}
+                                className={Style.NFTCard_box_img_img}
+                            />
+                        </div>
 
-                            <div className={Style.NFTCard_box_update_details_price_box_box}>
-                                <div className={Style.NFTCard_box_update_details_price_box_bid}>
-                                    <small>Buy Now</small>
-                                    <p>1.000ETH</p>
+                        <div className={Style.NFTCard_box_update_details}>
+                            <div className={Style.NFTCard_box_update_details_price}>
+                                <div className={Style.NFTCard_box_update_details_price_box}>
+                                    <h4>{product.title}</h4>
+
+                                    <div className={Style.NFTCard_box_update_details_price_box_box}>
+                                        <div className={Style.NFTCard_box_update_details_price_box_bid}>
+                                            <small>Buy Now</small>
+                                            <p>{product.price} ETH</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        ))}
-    </div>
-  )
-};
+                </Link>
+            ))}
+        </div>
+    );
+}
 
 export default NFTCard;
