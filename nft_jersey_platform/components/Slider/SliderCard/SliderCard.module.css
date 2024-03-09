@@ -20,7 +20,6 @@
 }
 
 .sliderCard_box_title{
-    display: flex;
     align-items: center;
     padding-inline: 2rem;
     justify-content: space-between;
@@ -29,15 +28,9 @@
 
 .sliderCard_box_title p{
     font-size: 1.2rem;
-    line-height: .5;
     font-weight: 800;
 }
 
-.sliderCard_box_title_like{
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-}
 
 .sliderCard_box_price{
     display: flex;

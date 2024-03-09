@@ -73,7 +73,8 @@
 }
 
 .NFTCard_box_update_details_price_box h4 {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
+    line-height: 1.5;
     white-space: normal; /* Allow text to wrap */
 }
 

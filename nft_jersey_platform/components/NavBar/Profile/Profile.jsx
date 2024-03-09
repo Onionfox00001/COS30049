@@ -1,8 +1,8 @@
 import React from 'react'
 import Image from "next/image"
-import { FaUserAlt, FaRegImage, FaUserEdit } from 'react-icons/fa'
-import { MdHelpCenter } from 'react-icons/md'
-import { TbDownloadOff, TbDownload } from 'react-icons/tb'
+import { MdSupportAgent } from 'react-icons/md'
+import { TbUser, TbUserEdit, TbShirt } from "react-icons/tb";
+import { TbDownload } from 'react-icons/tb'
 import Link from 'next/link'
 
 //INTERNAL IMPORT
@@ -30,29 +30,29 @@ const Profile = () => {
       <div className={Style.profile_menu}>
         <div className={Style.profile_menu_one}>
           <div className={Style.profile_menu_one_item}>
-            <FaUserAlt/>
+            <TbUser/>
             <p>
-              <Link href={{pathname: "/myprofile"}}>My Profile</Link>
+              <Link href={{pathname: "/account"}}>My Profile</Link>
             </p>
           </div>
           <div className={Style.profile_menu_one_item}>
-            <FaRegImage/>
+            <TbShirt/>
             <p>
-              <Link href={{pathname: "/my-items"}}>My Items</Link>
+              <Link href={{pathname: "/account"}}>My Items</Link>
             </p>
           </div>
           <div className={Style.profile_menu_one_item}>
-            <FaUserEdit/>
+            <TbUserEdit/>
             <p>
-              <Link href={{pathname: "/edit-profile"}}>Edit Profile</Link>
+              <Link href={{pathname: "/account"}}>Edit Profile</Link>
             </p>
           </div>
         </div>
         <div className={Style.profile_menu_two}>
           <div className={Style.profile_menu_one_item}>
-            <MdHelpCenter />
+            <MdSupportAgent />
             <p>
-              <Link href={{pathname:"/help"}}>Help</Link>
+              <Link href={{pathname:"/contactus"}}>Help</Link>
             </p>
           </div>
           <div className={Style.profile_menu_one_item}>

@@ -37,15 +37,15 @@ tables['product'] = (
     "  FOREIGN KEY (owner_blockchain_id) REFERENCES user_info(user_blockchain_id)"
     ") ENGINE=InnoDB")
 
-tables['transaction'] = (
+tables['transaction_info'] = (
     "CREATE TABLE IF NOT EXISTS transaction ("
     "  contract_address VARCHAR(255) NOT NULL,"
     "  nft_token_id VARCHAR(255),"
-    "  user_blockchain_id_buyer VARCHAR(255),"
-    "  user_blockchain_id_seller VARCHAR(255),"
+    "  buyer_blockchain_id VARCHAR(255),"
+    "  seller_blockchain_id VARCHAR(255),"
     "  FOREIGN KEY (nft_token_id) REFERENCES product(nft_token_id),"
-    "  FOREIGN KEY (user_blockchain_id_buyer) REFERENCES user_info(user_blockchain_id),"
-    "  FOREIGN KEY (user_blockchain_id_seller) REFERENCES user_info(user_blockchain_id)"
+    "  FOREIGN KEY (buyer_blockchain_id) REFERENCES user_info(user_blockchain_id),"
+    "  FOREIGN KEY (seller_blockchain_id) REFERENCES user_info(user_blockchain_id)"
     ") ENGINE=InnoDB")
 
 # Create each table
@@ -98,7 +98,7 @@ data_product =[
     ("https://lh3.googleusercontent.com/drive-viewer/AKGpihYVxnSeSz1-fNNnSg5Hlz6IC6EV7Z9bQ-LCkC5Gzt2qO8ehX7DSZ8PyNuUE0ihUJSLIoaRh-yIwNoLhpnQFg6njZTi1fA=s2560", "1999-2000 Manchester United Home Shirt Schmeichel #1", "0.12", "1999-2000 Manchester United Home Shirt Schmeichel #1", "18", "40-393-4278"),
     ("https://lh3.googleusercontent.com/drive-viewer/AKGpihZSH5tZ_C5oyRis1lKm2C70XVKsW-jtHmfKBr2MhaA2XhIbeI9pSFf_H7T-HWX3yDh_U4os1vPCSStjpcUTABlVjrXP=s2560", "2000 Netherlands Home Shirt Seedorf #10", "0.41", "2000 Netherlands Home Shirt Seedorf #10", "19", "20-109-3675"),
     ("https://lh3.googleusercontent.com/drive-viewer/AKGpihaR8QmuKTQmD-LlUgFnaTjCgqCjObAJa3U1a7qguJlImubXU-F_5li8dHjMKvHkGuz4ftXbiMnya-WEqvNKAK-R3Psp=s2560", "2001-02 AS Roma Home Shirt Totti #10", "0.38", "2001-02 AS Roma Home Shirt Totti #10", "20", "20-109-3675"),
-    ("https://lh3.googleusercontent.com/drive-viewer/AKGpihZnBDxJvuinWKEzS_Q_DQNXrGXT1br-9DmGJb9jv8xspH444witz9iYUATo9YKuhSt31D5OzPg8rGZSNc_IzPoxx3_Kwg=s2560", "1998 France Home Shirt Vieira #4", "0.7", "1998 France Home Shirt Vieira #4", "21", "49-836-0912"),
+    ("https://lh3.googleusercontent.com/drive-viewer/AKGpihZnBDxJvuinWKEzS_Q_DQNXrGXT1br-9DmGJb9jv8xspH444witz9iYUATo9YKuhSt31D5OzPg8rGZSNc_IzPoxx3_Kwg=s2560", "1998 France Home Shirt Vieira #4", "0.64", "1998 France Home Shirt Vieira #4", "21", "49-836-0912"),
     ("https://lh3.googleusercontent.com/drive-viewer/AKGpihb0LgDuHuxVoouHryybMRdG2fOObrkFTSM8yrcc3PjafGwwJ1NuIrk_peXb8eNKcNd4-72-VrbeIsK1_ArtN35If7HSaw=s1600", "2008-09 Barcelona Home Shirt Xavi #6", "0.6", "2008-09 Barcelona Home Shirt Xavi #6", "22", "48-728-3727"),
     ("https://lh3.googleusercontent.com/drive-viewer/AKGpihacQe-xNrwVWqVVj42x8wT0-AIpoydAGORFm73Wziz3Q_RT7dGSwxBjOkqbBAquRrudOtxmIFNuEdhzzVqDxY2mhbv5DQ=s2560", "1998 France Home Shirt Zidane #10", "0.65", "1998 France Home Shirt Zidane #10", "23", "28-930-8623")
 ]

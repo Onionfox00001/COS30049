@@ -8,50 +8,25 @@ import SliderCard from "./SliderCard/SliderCard";
 import images from "../../img";
 
 const Slider = () => {
-    const sliderArray = [
-        { 
-            id: 1,
-            imageSrc: images.nft_jersey_basten,
-            title: "NFT Jersey #1",
-            currentBid: "1.000 ETH",
-            remainingTime: "3h: 15m: 10s",
-        },
-        { 
-            id: 2,
-            imageSrc: images.nft_jersey_ronaldo9,
-            title: "NFT Jersey #2",
-            currentBid: "2.500 ETH",
-            remainingTime: "1h: 30m: 45s",
-        },
-        { 
-            id: 3,
-            imageSrc: images.nft_jersey_cafu,
-            title: "NFT Jersey #3",
-            currentBid: "1.500 ETH",
-            remainingTime: "5h: 20m: 30s",
-        },
-        { 
-            id: 4,
-            imageSrc: images.nft_jersey_iniesta,
-            title: "NFT Jersey #4",
-            currentBid: "1.100 ETH",
-            remainingTime: "2h: 10m: 5s",
-        },
-        { 
-            id: 5,
-            imageSrc: images.nft_jersey_pirlo,
-            title: "NFT Jersey #5",
-            currentBid: "3.000 ETH",
-            remainingTime: "10h: 58m: 43s",
-        },
-        { 
-            id: 6,
-            imageSrc: images.nft_jersey_piero,
-            title: "NFT Jersey #6",
-            currentBid: "4.500 ETH",
-            remainingTime: "21h: 23m: 25s",
-        },
-    ];
+    const [products, setProducts] = useState([]);
+    const [sliderArray, setSliderArray] = useState([]); // Define sliderArray as a state variable
+
+    useEffect(() => {
+        fetch('http://127.0.0.1:5000/products')
+            .then(response => response.json())
+            .then(data => {
+                setProducts(data);
+                const newSliderArray = data.map(product => ({
+                    id: product.nft_token_id,
+                    imageSrc: product.image,
+                    title: product.title,
+                    currentBid: product.price,
+                }));
+                setSliderArray(newSliderArray.slice(0, 6)); // Only take the first 6 items
+            })
+            .catch(error => console.error('There has been a problem with your fetch operation:', error));
+    }, []);
+
     const [width, setWidth] = useState(0);
     const dragSlider = useRef();
 
@@ -88,13 +63,12 @@ const Slider = () => {
 
                 <motion.div className={Style.slider_box_items} ref={dragSlider}>
                     <motion.div ref={dragSlider} className={Style.slider_box_item} drag="x" dragConstraints={{right: 0, left: -width}}>
-                        {sliderArray.map(({ id, imageSrc, title, currentBid, remainingTime }, i)=> (
+                        {sliderArray.map(({ id, imageSrc, title, currentBid })=> (
                             <SliderCard 
                             key={id} 
                             imageSrc={imageSrc} 
                             title={title}
                             currentBid={currentBid}
-                            remainingTime={remainingTime} 
                             />
                         ))}
                     </motion.div>
