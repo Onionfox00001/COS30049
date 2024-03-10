@@ -6,7 +6,7 @@ import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 import Style from "./NFTDetailsImg.module.css"; // Importing CSS module for styles
 
 async function fetchNFTData(nft_token_id) {
-    const response = await fetch(`http://127.0.0.1:5000/products/${nft_token_id}`); // replace with your API endpoint
+    const response = await fetch(`http://localhost:5000/products/${nft_token_id}`); // replace with your API endpoint
     const data = await response.json();
     return data;
 }

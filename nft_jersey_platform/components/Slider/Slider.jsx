@@ -1,18 +1,18 @@
 import React, {useState, useEffect, useRef} from "react";
 import {motion} from "framer-motion";
 import { TiArrowLeftThick, TiArrowRightThick } from "react-icons/ti";
-import Image from "next/image";
+
 
 import Style from "./Slider.module.css";
 import SliderCard from "./SliderCard/SliderCard";
-import images from "../../img";
+
 
 const Slider = () => {
     const [products, setProducts] = useState([]);
     const [sliderArray, setSliderArray] = useState([]); // Define sliderArray as a state variable
 
     useEffect(() => {
-        fetch('http://127.0.0.1:5000/products')
+        fetch('http://localhost:5000/products')
             .then(response => response.json())
             .then(data => {
                 setProducts(data);

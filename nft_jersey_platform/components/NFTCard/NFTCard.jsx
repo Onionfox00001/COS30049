@@ -7,7 +7,7 @@ const NFTCard = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch('http://127.0.0.1:5000/products')
+        fetch('http://localhost:5000/products')
             .then(response => response.json())
             .then(data => setProducts(data))
             .catch(error => console.error('There has been a problem with your fetch operation:', error));

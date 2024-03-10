@@ -11,7 +11,7 @@ const NFTDetailsPage = () => {
 
   useEffect(() => {
     if (nft_token_id) {
-      fetch(`http://127.0.0.1:5000/products/${nft_token_id}`)
+      fetch(`http://localhost:5000/products/${nft_token_id}`)
         .then(response => response.json())
         .then(data => setProduct(data))
         .catch(error => console.error('There has been a problem with your fetch operation:', error));
