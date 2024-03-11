@@ -1,24 +1,59 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 // Internal import
 import Style from "./SignInPage.module.css"; // Importing CSS module for styles
-import { Button } from '@/components/components_index'; // Importing Button component
+
 
 const SignInPage = () => {
+    const [form, setForm] = useState({
+        username: '',
+        password: ''
+      });
+    
+      const handleChange = (e) => {
+        setForm({
+          ...form,
+          [e.target.name]: e.target.value
+        });
+      };
+    
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        // Form validation
+        if (!form.username || !form.password) {
+          alert('All fields are required');
+          return;
+        }
+    
+        // Submit the form
+        try {
+          const response = await axios.post('http://localhost:5000/log_in', form);
+          alert(response.data.message);
+          // You can add more code here to handle successful login
+        } catch (error) {
+          console.error('Error logging in', error);
+          // Check if error.response exists before trying to access error.response.data.message
+          const errorMessage = error.response ? error.response.data.message : 'Error logging in';
+          alert(errorMessage);
+        }
+      };
+      
   return (
     <div className={Style.SignIn}> {/* Main container */}
         <div className={Style.SignIn_box}> {/* Box container */}
             <h2 className={Style.SignIn_box_title}>Sign In</h2> {/* Title */}
-            <form> {/* Form */}
+            <form onSubmit={handleSubmit}> {/* Form */}
                 <div className={Style.SignIn_box_input}> {/* Input field for username */}
                     <label htmlFor="name">Username</label> {/* Label */}
-                    <input type="text" placeholder="Enter your username" className={Style.SignIn_box_input_name}/> {/* Input field */}
+                    <input type="text" name="username" value={form.username} placeholder="Enter your username" className={Style.SignIn_box_input_name} onChange={handleChange}/> {/* Input field */}
                 </div>
 
                 <div className={Style.SignIn_box_input}> {/* Input field for password */}
                     <label htmlFor="password">Password</label> {/* Label */}
-                    <input type="text" placeholder="Enter your password" className={Style.SignIn_box_input_password}/> {/* Input field */}
-                    <div class={Style.SignIn_box_input_password_forgot}> {/* Link for forgot password */}
+                    <input type="password" name="password" value={form.password} placeholder="Enter your password" className={Style.SignIn_box_input_password} onChange={handleChange}/> {/* Input field */}
+                    <div className={Style.SignIn_box_input_password_forgot}> {/* Link for forgot password */}
                         <a rel="noopener noreferrer" href="#">Forgot Password ?</a> {/* Forgot Password link */}
                     </div>
                 </div>

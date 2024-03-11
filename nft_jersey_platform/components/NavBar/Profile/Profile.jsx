@@ -1,15 +1,27 @@
 import React from 'react'
 import Image from "next/image"
 import { MdSupportAgent } from 'react-icons/md'
-import { TbUser, TbUserEdit, TbShirt } from "react-icons/tb";
-import { TbDownload } from 'react-icons/tb'
+import { TbUser, TbUserEdit, TbShirt, TbDownload } from 'react-icons/tb'
 import Link from 'next/link'
+// import axios from 'axios'
 
 //INTERNAL IMPORT
 import Style from './Profile.module.css'
 import images from '../../../img'
 
 const Profile = () => {
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/log_out');
+      alert(response.data.message);
+      // Redirect to the login page after successful logout
+      window.location.href = '/signin';
+    } catch (error) {
+      console.error('Error logging out', error);
+      alert('Error logging out');
+    }
+  };
+
   return (
     <div className={Style.profile}>
       <div className={Style.profile_account}>
@@ -58,7 +70,7 @@ const Profile = () => {
           <div className={Style.profile_menu_one_item}>
             <TbDownload />
             <p>
-              <Link href={{pathname:"/disconnect"}}>Disconnect</Link>
+              <Link href={{pathname:"/signin"}} onClick={handleLogout}>Disconnect</Link>
             </p>
           </div>
 
