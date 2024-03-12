@@ -62,7 +62,18 @@ const NFTDescription = () => {
 
     if (!nftData) {
         return <div>Loading...</div>;
-      }
+    }
+
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'
+
+    const handleBuyNowClick = () => {
+        if (isLoggedIn) {
+            // handle the buy now logic
+        } else {
+            alert('You need to be logged in to buy this NFT')
+            router.push('/signin'); // replace '/signin' with your actual SignIn page route
+        }
+    };
 
     return (
         <div className={Style.NFTDescription}> {/* Container for NFT description */}
@@ -144,7 +155,7 @@ const NFTDescription = () => {
                             <Button 
                                 icon=<FaWallet/> 
                                 btnName="Buy Now"
-                                handleClick={() => {}}
+                                handleClick={handleBuyNowClick}
                                 classStyle={Style.button}
                             />
                         </div>

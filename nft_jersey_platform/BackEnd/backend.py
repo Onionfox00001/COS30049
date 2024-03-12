@@ -1,13 +1,14 @@
 from flask import Flask, jsonify, request, session
 from flask_cors import CORS
 import mysql.connector
+from datetime import timedelta
 
 app = Flask(__name__)
 app.secret_key = 'nft_jersey_platform'
-CORS(app)
+CORS(app, supports_credentials=True)
 
-@app.route('/users', methods=['GET'])
-def get_users():
+@app.route('/products', methods=['GET'])
+def get_products():
     # Establish the connection
     db = mysql.connector.connect(
         host="feenix-mariadb.swin.edu.au",
@@ -20,7 +21,7 @@ def get_users():
     cursor = db.cursor()
 
     # SQL query to fetch the required data
-    query = "SELECT username, password, email, balance, user_blockchain_id FROM user_info"
+    query = "SELECT image, title, price, nft_token_id FROM product"
 
     # Execute the query
     cursor.execute(query)
@@ -29,13 +30,79 @@ def get_users():
     rows = cursor.fetchall()
 
     # Convert rows into a list of dictionaries
-    users = [{"username": row[0], "password": row[1], "email": row[2], "balance": row[3], "user_blockchain_id": row[4]} for row in rows]
+    products = [{"image": row[0], "title": row[1], "price": row[2], "nft_token_id": row[3]} for row in rows]
+
+    # Don't forget to close the connection
+    db.close()
+
+    # Return the product data as JSON
+    return jsonify(products)
+
+@app.route('/products/<int:id>', methods=['GET'])
+def get_product(id):
+    # Establish the connection
+    db = mysql.connector.connect(
+        host="feenix-mariadb.swin.edu.au",
+        user="s104177995",
+        password="180804",
+        database="s104177995_db"
+    )
+
+    # Create a new cursor
+    cursor = db.cursor()
+
+    # SQL query to fetch the required data
+    query = "SELECT image, title, price, description, nft_token_id, owner_blockchain_id FROM product WHERE nft_token_id = %s"
+
+    # Execute the query
+    cursor.execute(query, (id,))
+
+    # Fetch the first row
+    row = cursor.fetchone()
+
+    # Check if a row was returned
+    if row is None:
+        return jsonify({"error": "Product not found"}), 404
+
+    # Convert row into a dictionary
+    product = {"image": row[0], "title": row[1], "price": row[2], "description": row[3], "nft_token_id": row[4], "owner_blockchain_id": row[5]}
+
+    # Don't forget to close the connection
+    db.close()
+
+    # Return the product data as JSON
+    return jsonify(product)
+
+@app.route('/users/<username>', methods=['GET'])
+def get_user(username):
+    # Establish the connection
+    db = mysql.connector.connect(
+        host="feenix-mariadb.swin.edu.au",
+        user="s104177995",
+        password="180804",
+        database="s104177995_db"
+    )
+
+    # Create a new cursor
+    cursor = db.cursor()
+
+    # SQL query to fetch the required data
+    query = "SELECT username, password, email, balance, user_blockchain_id FROM user_info WHERE username = %s"
+
+    # Execute the query
+    cursor.execute(query, (username,))
+
+    # Fetch the row
+    row = cursor.fetchone()
+
+    # Convert row into a dictionary
+    user = {"username": row[0], "password": row[1], "email": row[2], "balance": row[3], "user_blockchain_id": row[4]} if row else None
 
     # Don't forget to close the connection
     db.close()
 
     # Return the user data as JSON
-    return jsonify(users)
+    return jsonify(user)
 
 @app.route('/sign_up', methods=['POST'])
 def signup():
@@ -102,11 +169,19 @@ def login():
     if user and user[0] == data['password']:
         # Log the user in
         session['username'] = data['username']
-        return jsonify({'message': 'Logged in!'})
+        # Check if the session is created
+        if 'username' in session:
+            return jsonify({'message': 'Logged in and session created!'})
+        else:
+            return jsonify({'message': 'Logged in but session not created'}), 500
 
     return jsonify({'message': 'Invalid username or password'}), 401
 
-@app.route('/log_out', methods=['POST'])
+@app.route('/get_username', methods=['GET'])
+def get_username():
+    return jsonify({'username': session.get('username')})
+
+@app.route('/log_out', methods=['POST', 'GET'])
 def logout():
     # Remove the username from the session
     session.pop('username', None)

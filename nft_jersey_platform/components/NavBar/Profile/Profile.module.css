@@ -27,6 +27,10 @@
     border-radius: 50%;
 }
 
+.profile_account_info {
+    margin-top: -6%;
+}
+
 .profile_account_info p {
     font-weight: 600;
 }

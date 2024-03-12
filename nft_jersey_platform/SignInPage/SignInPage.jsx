@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 // Internal import
@@ -10,35 +10,45 @@ const SignInPage = () => {
         username: '',
         password: ''
       });
-    
-      const handleChange = (e) => {
+
+    const handleChange = (e) => {
         setForm({
-          ...form,
-          [e.target.name]: e.target.value
+            ...form,
+            [e.target.name]: e.target.value
         });
-      };
-    
-      const handleSubmit = async (e) => {
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         // Form validation
         if (!form.username || !form.password) {
-          alert('All fields are required');
-          return;
+            alert('All fields are required');
+            return;
+        }   
+        // Check if the user is already logged in
+        if (localStorage.getItem('isLoggedIn') === 'true') {
+            alert('You are already logged in');
+            window.location.href = '/';
+            return;
+        } else {
+            // Submit the form
+            try {
+                const response = await axios.post('http://localhost:5000/log_in', form);
+                alert(response.data.message);
+                // Set the flag in the local storage
+                localStorage.setItem('isLoggedIn', 'true');
+
+                window.location.href = '/';
+                // You can add more code here to handle successful login
+            } catch (error) {
+                console.error('Error logging in', error);
+                // Check if error.response exists before trying to access error.response.data.message
+                const errorMessage = error.response ? error.response.data.message : 'Error logging in';
+                alert(errorMessage);
+            }
         }
-    
-        // Submit the form
-        try {
-          const response = await axios.post('http://localhost:5000/log_in', form);
-          alert(response.data.message);
-          // You can add more code here to handle successful login
-        } catch (error) {
-          console.error('Error logging in', error);
-          // Check if error.response exists before trying to access error.response.data.message
-          const errorMessage = error.response ? error.response.data.message : 'Error logging in';
-          alert(errorMessage);
-        }
-      };
+    };
       
   return (
     <div className={Style.SignIn}> {/* Main container */}

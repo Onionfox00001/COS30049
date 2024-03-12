@@ -1,12 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from 'react'
 import { HiOutlineMail } from "react-icons/hi";
 import { RiCopperCoinFill, RiUserFill, RiLock2Fill } from "react-icons/ri";
+import axios from 'axios';
 
 // Internal import
 import Style from "./Form.module.css";
 import { Button } from "../../components/components_index";
 
 const Form = () => {
+    axios.defaults.withCredentials = true;
+
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                // Fetch the username of the logged-in user
+                const usernameResponse = await axios.get('http://localhost:5000/get_username');
+                const username = usernameResponse.data.username;
+    
+                // Fetch the user data
+                const userResponse = await axios.get(`http://localhost:5000/users/${username}`);
+                if (userResponse.status === 200) {
+                    setUser(userResponse.data);
+                } else {
+                    console.error('Failed to fetch user');
+                }
+            } catch (error) {
+                console.error('An error occurred while fetching the user', error);
+            }
+        };
+    
+        fetchUser();
+    }, []);
+
     return (
         <div className={Style.Form}>
             <div className={Style.Form_box}>
@@ -18,7 +45,7 @@ const Form = () => {
                             <div className={Style.Form_box_input_box_icon}>
                                 <RiUserFill />
                             </div>
-                            <input type="text" placeholder="thaianhbui" className={Style.Form_box_input_userName} />
+                            <input type="text" placeholder={user ? user.username : 'Not logged in'} className={Style.Form_box_input_userName} />
                         </div>
                     </div>
 
@@ -29,7 +56,7 @@ const Form = () => {
                             <div className={Style.Form_box_input_box_icon}>
                                 <RiLock2Fill />
                             </div>
-                            <input type="text" placeholder="0x1A2B3C4D5E6F7G8H9J" />
+                            <input type="text" placeholder={user ? user.password : 'Not logged in'} />
                         </div>
                     </div>
 
@@ -40,7 +67,7 @@ const Form = () => {
                             <div className={Style.Form_box_input_box_icon}>
                                 <HiOutlineMail />
                             </div>
-                            <input type="text" placeholder="Email" />
+                            <input type="text" placeholder={user ? user.email : 'Not logged in'} />
                         </div>
                     </div>
 
@@ -51,7 +78,7 @@ const Form = () => {
                             <div className={Style.Form_box_input_box_icon}>
                                 <RiCopperCoinFill />
                             </div>
-                            <input type="text" placeholder="1000 ETH" />
+                            <input type="text" placeholder={user ? user.balance : 'Not logged in'} />
                         </div>
                     </div>
 
@@ -84,22 +111,10 @@ const Form = () => {
                         </table>
                     </div>
 
-                    {/* Description Textarea */}
-                    <div className={Style.Form_box_input}>
-                        <label htmlFor="description">Description</label>
-                        <textarea
-                            name=""
-                            id=""
-                            cols=""
-                            rows=""
-                            placeholder="Something about yourself in few words"
-                        ></textarea>
-                    </div>
-
                     {/* Upload Button */}
                     <div className={Style.Form_box_btn}>
                         <Button
-                            btnName="Upload profile"
+                            btnName="Upload Profile"
                             handleClick={() => { }}
                             classStyle={Style.button}
                         />
