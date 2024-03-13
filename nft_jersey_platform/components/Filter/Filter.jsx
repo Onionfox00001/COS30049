@@ -80,7 +80,7 @@ const Filter = ({ onCategoryChange }) => {
           <div className={Style.filter_box_items}>
             <div className={Style.filter_box_items_box}>
               <div className={Style.filter_box_items_box_item}>
-                <FaWallet /> <span>10 ETH</span>
+                <FaWallet /> <span>ETH</span>
                 <AiFillCloseCircle />
               </div>
             </div>

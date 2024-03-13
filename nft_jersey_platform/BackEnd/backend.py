@@ -11,6 +11,7 @@ CORS(app, supports_credentials=True)
 def get_products():
     # Get the category from the query parameters
     category = request.args.get('category')
+    search_term = request.args.get('search')
 
     # Establish the connection
     db = mysql.connector.connect(
@@ -24,12 +25,20 @@ def get_products():
     cursor = db.cursor()
 
     # SQL query to fetch the required data
-    if category:
-        # If a category is provided, return only the products that contain the hashtag in their description
+    if category and search_term:
+        # If a category and search term are provided, return only the products that contain the hashtag in their description and match the search term in their title
+        query = "SELECT image, title, price, nft_token_id FROM product WHERE description LIKE %s AND title LIKE %s"
+        values = ('%' + category + '%', '%' + search_term + '%')
+    elif category:
+        # If only a category is provided, return only the products that contain the hashtag in their description
         query = "SELECT image, title, price, nft_token_id FROM product WHERE description LIKE %s"
         values = ('%' + category + '%',)
+    elif search_term:
+        # If only a search term is provided, return only the products that match the search term in their title
+        query = "SELECT image, title, price, nft_token_id FROM product WHERE title LIKE %s"
+        values = ('%' + search_term + '%',)
     else:
-        # If no category is provided, return all products
+        # If no category or search term is provided, return all products
         query = "SELECT image, title, price, nft_token_id FROM product"
         values = ()
 

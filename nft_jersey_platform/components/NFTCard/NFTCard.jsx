@@ -3,20 +3,33 @@ import Style from "./NFTCard.module.css";
 import Image from 'next/image';
 import Link from 'next/link';
 
-const NFTCard = ({ category }) => {
+const NFTCard = ({ category, searchTerm }) => {
     console.log(`Category prop: ${category}`);
+    console.log(`Search term prop: ${searchTerm}`);
 
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        // Include the category in the fetch URL as a query parameter
-        const url = category ? `http://localhost:5000/products?category=${encodeURIComponent(category)}` : 'http://localhost:5000/products';
+        // Include the category and search term in the fetch URL as query parameters
+        let url = 'http://localhost:5000/products';
+        if (category || searchTerm) {
+            url += '?';
+            if (category) {
+                url += `category=${encodeURIComponent(category)}`;
+            }
+            if (searchTerm) {
+                if (category) {
+                    url += '&';
+                }
+                url += `search=${encodeURIComponent(searchTerm)}`;
+            }
+        }
 
         fetch(url)
             .then(response => response.json())
             .then(data => setProducts(data))
             .catch(error => console.error('There has been a problem with your fetch operation:', error));
-    }, [category]); // Add category to the dependency array so the effect runs again if the category changes
+    }, [category, searchTerm]); // Add searchTerm to the dependency array so the effect runs again if the search term changes
 
     return (
         <div className={Style.NFTCard}>
