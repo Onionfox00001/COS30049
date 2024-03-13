@@ -61,6 +61,11 @@
     cursor: grab;
 }
 
+.slider_box_item_link {
+    text-decoration: none;
+    color: var(--main-text-color);
+}
+
 .slider_box_item::-webkit-scrollbar{
     display: none;
 }

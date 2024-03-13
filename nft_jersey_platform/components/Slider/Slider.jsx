@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from "react";
 import {motion} from "framer-motion";
 import { TiArrowLeftThick, TiArrowRightThick } from "react-icons/ti";
+import Link from 'next/link';
 
 
 import Style from "./Slider.module.css";
@@ -64,12 +65,14 @@ const Slider = () => {
                 <motion.div className={Style.slider_box_items} ref={dragSlider}>
                     <motion.div ref={dragSlider} className={Style.slider_box_item} drag="x" dragConstraints={{right: 0, left: -width}}>
                         {sliderArray.map(({ id, imageSrc, title, currentBid })=> (
-                            <SliderCard 
-                            key={id} 
-                            imageSrc={imageSrc} 
-                            title={title}
-                            currentBid={currentBid}
-                            />
+                            <Link href={`/NFT-details?nft_token_id=${id}`}  className={Style.slider_box_item_link}>
+                                <SliderCard 
+                                    key={id} 
+                                    imageSrc={imageSrc} 
+                                    title={title}
+                                    currentBid={currentBid}
+                                />
+                            </Link>
                         ))}
                     </motion.div>
                 </motion.div>
