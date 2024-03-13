@@ -13,6 +13,7 @@ import {Discover, HelpCenter, Notification, Profile, SideBar} from './index';
 import {Button} from '../components_index';
 import images from '../../img';
 
+
 const NavBar = () => {
   // USE STATE COMPONENTS
   const [discover, setDiscover] = useState(false);
@@ -20,6 +21,7 @@ const NavBar = () => {
   const [notification, setNotification] = useState(false);
   const [profile, setProfile] = useState(false);
   const [openSideMenu, setOpenSideMenu] = useState(false);
+  const [searchQuery, setSearchQuery] = useState(''); // New state variable for the search query
 
   const openMenu = (e) => {
     const btnText = e.target.innerText;
@@ -88,8 +90,10 @@ const NavBar = () => {
           </div>
           <div className={Style.navbar_container_left_box_input}>
             <div className = {Style.navbar_container_left_box_input_box}>
-              <input type='text' placeholder="Search NFT Jerseys" />
-              <BsSearch onClick={() => {}} className={Style.search_icon}/>
+              <input type='text' placeholder="Search NFT Jerseys"/>
+              <Link href="/searchPage">
+                <BsSearch  className={Style.search_icon}/>
+              </Link>
             </div>
           </div>
         </div>

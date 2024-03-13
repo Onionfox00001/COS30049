@@ -49,9 +49,18 @@ const Filter = ({ onCategoryChange }) => {
   };
 
   const handleCategoryChange = (category) => {
-    setSelectedCategory(category); // Set the selected category
-    const hashtag = `#${category.replace(' ', '').toLowerCase()}`;
-    onCategoryChange(hashtag);
+    if (category === selectedCategory) {
+      // If the selected category is the same as the one being clicked,
+      // set the selected category to null and call onCategoryChange with null to reset the filter
+      setSelectedCategory(null);
+      onCategoryChange(null);
+    } else {
+      // If the selected category is different from the one being clicked,
+      // proceed as before
+      setSelectedCategory(category);
+      const hashtag = `#${category.replace(' ', '').toLowerCase()}`;
+      onCategoryChange(hashtag);
+    }
   };
 
   return (
