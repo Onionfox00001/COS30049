@@ -1,25 +1,22 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router"; // Import useRouter from Next.js
+import { useRouter } from "next/router";
 import { Button } from "../components/components_index.js";
 import { DropZone } from "../UploadNFT/uploadNFTIndex.js";
 import Style from "./Upload.module.css";
-import formStyle from "../AccountPage/Form/Form.module.css";
 import images from "../img";
 
 const UploadNFT = () => {
     const [itemName, setItemName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
-    const [successMessage, setSuccessMessage] = useState(false); // State variable for success message
-    const router = useRouter(); // Initialize useRouter
+    const [successMessage, setSuccessMessage] = useState(false);
+    const router = useRouter();
 
     const handleSubmit = () => {
-        // Logic for form submission
-        // Assuming validation passes and submission is successful
-        setSuccessMessage(true); // Display success message
+        setSuccessMessage(true);
         setTimeout(() => {
-            setSuccessMessage(false); // Hide success message after 2 seconds
-            router.push("/"); // Redirect to home page after 2 seconds
+            setSuccessMessage(false);
+            router.push("/");
         }, 2000);
     };
 
@@ -36,20 +33,16 @@ const UploadNFT = () => {
             />
 
             <div className={Style.upload_box}>
-                {/* Item name */}
-                <div className={formStyle.Form_box_input}>
-                    <label htmlFor="nft">Item Name</label>
-                    <div className={Style.Form_box_input_box}>
-                        <input
-                            type="text"
-                            className={formStyle.Form_box_input_userName}
-                            onChange={(e) => setItemName(e.target.value)}
-                        />
-                    </div>
+                <div className={Style.Form_box_input}>
+                    <label htmlFor="nft">Item Name:</label>
+                    <input
+                        type="text"
+                        className={Style.Form_box_input_userName}
+                        onChange={(e) => setItemName(e.target.value)}
+                    />
                 </div>
-                {/* Item description */}
-                <div className={formStyle.Form_box_input}>
-                    <label htmlFor="description">Description</label>
+                <div className={Style.Form_box_input}>
+                    <label htmlFor="description">Description:</label>
                     <textarea
                         name=""
                         id=""
@@ -59,18 +52,14 @@ const UploadNFT = () => {
                         onChange={(e) => setDescription(e.target.value)}
                     ></textarea>
                 </div>
-                {/* Price */}
-                <div className={formStyle.Form_box_input}>
-                    <label htmlFor="nft">Price (ETH)</label>
-                    <div className={Style.Form_box_input_box}>
-                        <input
-                            type="text"
-                            className={formStyle.Form_box_input_userName}
-                            onChange={(e) => setPrice(e.target.value)}
-                        />
-                    </div>
+                <div className={Style.Form_box_input}>
+                    <label htmlFor="nft">Price(ETH):</label>
+                    <input
+                        type="text"
+                        className={Style.Form_box_input_userName}
+                        onChange={(e) => setPrice(e.target.value)}
+                    />
                 </div>
-                {/* Upload button */}
                 <div className={Style.upload_box_btn}>
                     <Button
                         btnName="Upload"
@@ -79,8 +68,6 @@ const UploadNFT = () => {
                     />
                 </div>
             </div>
-
-            {/* Success message */}
             {successMessage && (
                 <div className={Style.success_message}>
                     <p>Create NFT successfully !!!!!!</p>
