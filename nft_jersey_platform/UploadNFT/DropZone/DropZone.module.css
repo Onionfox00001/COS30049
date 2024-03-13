@@ -19,11 +19,26 @@
     border-radius: 1rem;
 }
 
-.DropZone_box_aside{
+/* Define keyframes for border color animation */
+@keyframes borderAnimation {
+    0% { border-color: #007bff; }
+    10% { border-color: #3498db; }
+    20% { border-color: #5bc0de; }
+    30% { border-color: #7ebaff; }
+    50% { border-color: #a3d8ff; }
+    65% { border-color: #cbe4ff; }
+    80% { border-color: #007bff; }
+    100% { border-color: #007bff; }
+}
+
+.DropZone_box_aside {
     padding: 2rem;
-    border: 3px dotted var(--icons-color);
     margin-top: 3rem;
     border-radius: 1px;
+    /* Apply initial border color */
+    border: 3px solid #007bff;
+    /* Animate the border color */
+    animation: borderAnimation 10s linear infinite;
 }
 
 .DropZone_box_aside_box{
@@ -48,6 +63,7 @@
 
 .DropZone_box_aside_box_preview_three{
     display: grid;
+    margin-top: 3rem;
     grid-template-columns: repeat(3, 1fr);
 }
 
