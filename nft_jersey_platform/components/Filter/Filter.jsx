@@ -49,9 +49,18 @@ const Filter = ({ onCategoryChange }) => {
   };
 
   const handleCategoryChange = (category) => {
-    setSelectedCategory(category); // Set the selected category
-    const hashtag = `#${category.replace(' ', '').toLowerCase()}`;
-    onCategoryChange(hashtag);
+    if (category === selectedCategory) {
+      // If the selected category is the same as the one being clicked,
+      // set the selected category to null and call onCategoryChange with null to reset the filter
+      setSelectedCategory(null);
+      onCategoryChange(null);
+    } else {
+      // If the selected category is different from the one being clicked,
+      // proceed as before
+      setSelectedCategory(category);
+      const hashtag = `#${category.replace(' ', '').toLowerCase()}`;
+      onCategoryChange(hashtag);
+    }
   };
 
   return (
@@ -80,7 +89,7 @@ const Filter = ({ onCategoryChange }) => {
           <div className={Style.filter_box_items}>
             <div className={Style.filter_box_items_box}>
               <div className={Style.filter_box_items_box_item}>
-                <FaWallet /> <span>10 ETH</span>
+                <FaWallet /> <span>ETH</span>
                 <AiFillCloseCircle />
               </div>
             </div>
