@@ -40,21 +40,21 @@ const DropZone = ({title, heading, subHeading, itemName, description,price, imag
                         <div className={Style.DropZone_box_aside_box_preview}>
                             <div className={Style.DropZone_box_aside_box_preview_one}>
                                 <p>
-                                    <span>NFT name:</span>
+                                    <span>NFT name: </span>
                                     {itemName || ""}
                                 </p>
                             </div>
 
                             <div className={Style.DropZone_box_aside_box_preview_two}>
                                 <p>
-                                    <span>Description:</span>
+                                    <span>Description: </span>
                                     {description || ""}
                                 </p>
                             </div>
 
                             <div className={Style.DropZone_box_aside_box_preview_three}>
                                 <p>
-                                    <span>Price:</span>
+                                    <span>Price: </span>
                                     {price || ""}
                                 </p>
                             </div>
