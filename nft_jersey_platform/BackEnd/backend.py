@@ -9,6 +9,9 @@ CORS(app, supports_credentials=True)
 
 @app.route('/products', methods=['GET'])
 def get_products():
+    # Get the category from the query parameters
+    category = request.args.get('category')
+
     # Establish the connection
     db = mysql.connector.connect(
         host="feenix-mariadb.swin.edu.au",
@@ -21,10 +24,17 @@ def get_products():
     cursor = db.cursor()
 
     # SQL query to fetch the required data
-    query = "SELECT image, title, price, nft_token_id FROM product"
+    if category:
+        # If a category is provided, return only the products that contain the hashtag in their description
+        query = "SELECT image, title, price, nft_token_id FROM product WHERE description LIKE %s"
+        values = ('%' + category + '%',)
+    else:
+        # If no category is provided, return all products
+        query = "SELECT image, title, price, nft_token_id FROM product"
+        values = ()
 
     # Execute the query
-    cursor.execute(query)
+    cursor.execute(query, values)
 
     # Fetch all the rows
     rows = cursor.fetchall()

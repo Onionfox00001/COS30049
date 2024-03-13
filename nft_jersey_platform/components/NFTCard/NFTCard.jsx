@@ -3,15 +3,20 @@ import Style from "./NFTCard.module.css";
 import Image from 'next/image';
 import Link from 'next/link';
 
-const NFTCard = () => {
+const NFTCard = ({ category }) => {
+    console.log(`Category prop: ${category}`);
+
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        // Include the category in the fetch URL as a query parameter
+        const url = category ? `http://localhost:5000/products?category=${encodeURIComponent(category)}` : 'http://localhost:5000/products';
+
+        fetch(url)
             .then(response => response.json())
             .then(data => setProducts(data))
             .catch(error => console.error('There has been a problem with your fetch operation:', error));
-    }, []);
+    }, [category]); // Add category to the dependency array so the effect runs again if the category changes
 
     return (
         <div className={Style.NFTCard}>

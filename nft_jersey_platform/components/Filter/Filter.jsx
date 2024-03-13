@@ -7,11 +7,13 @@ import {TiTick} from 'react-icons/ti';
 //INTERNAL IMPORT
 import Style from "./Filter.module.css";
 
-const Filter = () => {
+const Filter = ({ onCategoryChange }) => {
     const [filter, setFilter] = useState(true);
     const [price1, setPrice1] = useState(true);
     const [price2, setPrice2] = useState(true);
     const [letter, setLetter] = useState(true);
+    const [selectedCategory, setSelectedCategory] = useState(null); // New state variable
+    
   
   //FUNCTION SECTION 
   const openFilter = () => {
@@ -46,15 +48,21 @@ const Filter = () => {
     }
   };
 
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category); // Set the selected category
+    const hashtag = `#${category.replace(' ', '').toLowerCase()}`;
+    onCategoryChange(hashtag);
+  };
+
   return (
     <div className={Style.filter}>
       <div className={Style.filter_box}>
         <div className={Style.filter_box_left}>
-          <button onClick={()=> {}}>Premier League</button>
-          <button onClick={()=> {}}>La Liga</button>
-          <button onClick={()=> {}}>Ligue 1</button>
-          <button onClick={()=> {}}>Serie A</button>
-          <button onClick={()=> {}}>National Teams</button>
+          <button className={selectedCategory === 'Premier League' ? Style.selected : ''} onClick={()=> handleCategoryChange('Premier League')}>Premier League</button>
+          <button className={selectedCategory === 'La Liga' ? Style.selected : ''} onClick={()=> handleCategoryChange('La Liga')}>La Liga</button>
+          <button className={selectedCategory === 'Ligue 1' ? Style.selected : ''} onClick={()=> handleCategoryChange('Ligue 1')}>Ligue 1</button>
+          <button className={selectedCategory === 'Serie A' ? Style.selected : ''} onClick={()=> handleCategoryChange('Serie A')}>Serie A</button>
+          <button className={selectedCategory === 'National Teams' ? Style.selected : ''} onClick={()=> handleCategoryChange('National Teams')}>National Teams</button>
         </div> 
         <div className={Style.filter_box_right}>
           <div
