@@ -1,0 +1,50 @@
+.upload_box_input_para{
+    padding: 0 1rem;
+}
+
+.upload_box_btn{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-block: 4rem;
+    gap: 2.1rem;
+}
+
+.upload_box_btn_style{
+    width: 100%;
+    display: grid;
+    align-self: center;
+    font-size: 1.3rem;
+}
+
+.success_message {
+    position: fixed;
+    top: -50px; 
+    left: 0;
+    width: 100%;
+    background-color: #4caf50;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    z-index: 9999;
+    animation: slideIn 0.5s forwards; 
+}
+
+@keyframes slideIn {
+    0% {
+        top: -50px; 
+    }
+    100% {
+        top: 0; 
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        top: 0; 
+    }
+    100% {
+        top: -50px;
+    }
+}
+      
+
