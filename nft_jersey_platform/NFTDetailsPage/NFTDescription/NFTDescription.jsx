@@ -145,7 +145,7 @@ const NFTDescription = () => {
                         <div className={Style.NFTDescription_box_profile_biding_box_price}>
                             <div className={Style.NFTDescription_box_profile_biding_box_price_bid}>
                                 <small>Current Price</small>
-                                <p>{nftData.price} ETH <span>(= ${nftData.price * 3932})</span></p>
+                                <p>{nftData.price} ETH <span>(~ ${nftData.price * 3932})</span></p>
                             </div>
 
                         </div>
