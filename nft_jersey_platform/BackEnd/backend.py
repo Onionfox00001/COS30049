@@ -42,7 +42,7 @@ def get_products():
     # Convert rows into a list of dictionaries
     products = [{"image": row[0], "title": row[1], "price": row[2], "nft_token_id": row[3]} for row in rows]
 
-    # Don't forget to close the connection
+    # close the connection
     db.close()
 
     # Return the product data as JSON
@@ -77,7 +77,7 @@ def get_product(id):
     # Convert row into a dictionary
     product = {"image": row[0], "title": row[1], "price": row[2], "description": row[3], "nft_token_id": row[4], "owner_blockchain_id": row[5]}
 
-    # Don't forget to close the connection
+    # close the connection
     db.close()
 
     # Return the product data as JSON
@@ -108,7 +108,7 @@ def get_user(username):
     # Convert row into a dictionary
     user = {"username": row[0], "password": row[1], "email": row[2], "balance": row[3], "user_blockchain_id": row[4]} if row else None
 
-    # Don't forget to close the connection
+    # close the connection
     db.close()
 
     # Return the user data as JSON
