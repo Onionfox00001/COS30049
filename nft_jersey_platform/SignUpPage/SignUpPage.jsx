@@ -22,15 +22,22 @@ const SignUpPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
             
+        // Trim form fields
+        const trimmedForm = {
+            username: form.username.trim(),
+            password: form.password.trim(),
+            email: form.email.trim(),
+        };
+
         // Form validation
-        if (!form.username || !form.password || !form.email) {
+        if (!trimmedForm.username || !trimmedForm.password || !trimmedForm.email) {
             alert('All fields are required');
             return;
         }
 
         // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(form.email)) {
+        if (!emailRegex.test(trimmedForm.email)) {
             alert('Please enter a valid email');
             return;
         }
