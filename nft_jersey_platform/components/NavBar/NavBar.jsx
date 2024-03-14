@@ -21,7 +21,6 @@ const NavBar = () => {
   const [notification, setNotification] = useState(false);
   const [profile, setProfile] = useState(false);
   const [openSideMenu, setOpenSideMenu] = useState(false);
-  const [searchQuery, setSearchQuery] = useState(''); // New state variable for the search query
 
   const openMenu = (e) => {
     const btnText = e.target.innerText;
