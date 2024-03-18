@@ -48,9 +48,7 @@ const ConnectWallet = () => {
         // Convert Wei to Ether and round to 4 decimal places
         const balanceInEther = (Number(balanceInWei) / 10**18).toFixed(4);
         console.log('Account balance in Ether:', balanceInEther);
-
-        props.setBlockchainId(blockchain_id);
-        props.setBalanceInWei(balanceInWei);
+        
         // Handle the account connection here
       } else {
         alert('MetaMask not detected. Please install MetaMask to connect.');
