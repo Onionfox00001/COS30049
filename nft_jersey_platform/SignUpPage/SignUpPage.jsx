@@ -6,6 +6,7 @@ import Style from "./SignUpPage.module.css"; // Importing CSS module for styles
 
 
 const SignUpPage = () => {
+
     const [form, setForm] = useState({
         username: '',
         password: '',

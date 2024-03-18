@@ -146,7 +146,7 @@ def signup():
 
     # SQL query to insert the new user
     query = "INSERT INTO user_info (username, password, email, balance, user_blockchain_id) VALUES (%s, %s, %s, %s, %s)"
-    values = (data['username'], data['password'], data['email'], "0", "100")
+    values = (data['username'], data['password'], data['email'], data.get('balance', None), data.get('user_blockchain_id', None))
 
     # Execute the query
     cursor.execute(query, values)

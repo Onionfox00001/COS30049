@@ -1,66 +1,99 @@
-import React, { useState, useEffect } from 'react';
-import Image from "next/image";
+import React, { useState } from 'react';
+import Image from 'next/image';
+import Style from '../styles/connectWallet.module.css';
+import images from '../img';
 
-// Internal imports
-import Style from '../styles/connectWallet.module.css'; // Importing CSS module for styles
-import images from '../img'; // Importing images
+const ConnectWallet = () => {
+  const [activeBtn, setActiveBtn] = useState(1);
 
-const connectWallet = () => {
-    // State variable for active button
-    const [activeBtn, setActiveBtn] = useState(1);
+  const providerArray = [
+    {
+      provider: images.provider_1,
+      name: 'Metamask',
+    },
+    {
+      provider: images.provider_2,
+      name: 'walletConnect',
+    },
+    {
+      provider: images.provider_3,
+      name: 'walletlink',
+    },
+    {
+      provider: images.provider_4,
+      name: 'Formatic',
+    },
+  ];
 
-    // Array containing wallet provider data
-    const providerArray = [
-        {
-            provider: images.provider_1,
-            name: "Metamask",
-        },
-        {
-            provider: images.provider_2,
-            name: "walletConnect",
-        },
-        {
-            provider: images.provider_3,
-            name: "walletlink",
-        },
-        {
-            provider: images.provider_4,
-            name: "Formatic",
-        },
-    ];
+  const connectToMetaMask = async () => {
+    try {
+      // Check if MetaMask is installed
+      if (window.ethereum) {
+        // Request access to MetaMask accounts
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const blockchain_id = accounts[0];
+        console.log('Connected to MetaMask:', blockchain_id);
+        alert('Wallet connected successfully.'); // Display a pop-up notification
 
-    // JSX to render
-    return (
-        <div className={Style.connectWallet}> {/* Container for connecting wallet */}
-            <div className={Style.connectWallet_box}> {/* Box for connecting wallet */}
-                <h1>Connect your wallet</h1> {/* Title */}
-                <p className={Style.connectWallet_box_para}> {/* Description */}
-                    Connect with one of our available wallet providers or create a new one
-                </p>
+        // Switch to Sepolia network
+        await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{ chainId: '0xaa36a7' }], // Chain ID for Sepolia
+        });
 
-                <div className={Style.connectWallet_box_provider}> {/* Container for wallet provider options */}
-                    {/* Mapping over providerArray to render each provider option */}
-                    {providerArray.map((el, i) => (
-                        <div 
-                            className={`${Style.connectWallet_box_provider_item} 
-                            ${activeBtn === i + 1 ? Style.active : ""}`} // Conditional styling for active button
-                            key={i + 1}
-                            onClick={() => setActiveBtn(i + 1)} // Function to set active button
-                        >
-                            <Image 
-                                src={el.provider} 
-                                alt={el.provider} 
-                                width={50} 
-                                height={50}
-                                className={Style.connectWallet_box_provider_item_img} // Styling for provider image
-                            />
-                            <p>{el.name}</p> {/* Wallet provider name */}
-                        </div>
-                    ))}
-                </div>
+        // Request account balance
+        const balanceInWeiHex = await window.ethereum.request({ method: 'eth_getBalance', params: [blockchain_id, 'latest'] });
+        const balanceInWei = BigInt(balanceInWeiHex); // Convert hexadecimal to decimal
+
+        // Convert Wei to Ether and round to 4 decimal places
+        const balanceInEther = (Number(balanceInWei) / 10**18).toFixed(4);
+        console.log('Account balance in Ether:', balanceInEther);
+
+        props.setBlockchainId(blockchain_id);
+        props.setBalanceInWei(balanceInWei);
+        // Handle the account connection here
+      } else {
+        alert('MetaMask not detected. Please install MetaMask to connect.');
+      }
+    } catch (error) {
+      console.error('Error connecting to MetaMask:', error);
+    }
+  };
+
+  return (
+    <div className={Style.connectWallet}>
+      <div className={Style.connectWallet_box}>
+        <h1>Connect your wallet</h1>
+        <p className={Style.connectWallet_box_para}>
+          Connect with one of our available wallet providers or create a new one
+        </p>
+
+        <div className={Style.connectWallet_box_provider}>
+          {providerArray.map((el, i) => (
+            <div
+              className={`${Style.connectWallet_box_provider_item} ${
+                activeBtn === i + 1 ? Style.active : ''
+              }`}
+              key={i + 1}
+              onClick={() => {
+                setActiveBtn(i + 1);
+                connectToMetaMask(); // Call the connectToMetaMask function when clicked
+              }}
+            >
+              <Image
+                src={el.provider}
+                alt={el.provider}
+                width={50}
+                height={50}
+                className={Style.connectWallet_box_provider_item_img}
+              />
+              <p>{el.name}</p>
             </div>
+          ))}
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
-export default connectWallet;
+export default ConnectWallet;

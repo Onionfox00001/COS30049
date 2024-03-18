@@ -12,6 +12,7 @@ import {
     TiSocialInstagram, 
 } from 'react-icons/ti';
 import { BiTransferAlt, BiDollar } from "react-icons/bi";
+import { TransactionContext } from "../../context/TransactionContext";
 
 // Internal imports
 import Style from './NFTDescription.module.css'; // Importing CSS module for styles
@@ -30,9 +31,15 @@ const NFTDescription = () => {
     const [social, setSocial] = useState(false); // State for social share menu visibility
     const [NFTMenu, setNFTMenu] = useState(false); // State for NFT menu visibility
     const [nftData, setNftData] = useState(null); // State for NFT data
+    const [showPopup, setShowPopup] = useState(false);
 
     const router = useRouter(); // Initialize useRouter hook
     const { nft_token_id } = router.query; // Get nft_token_id from URL
+    const {
+        formData,
+        handleChange,
+        sentTransaction
+      } = useContext(TransactionContext);    
 
     useEffect(() => {
         if (nft_token_id) { // Check if nft_token_id is available
@@ -74,6 +81,13 @@ const NFTDescription = () => {
             router.push('/signin'); // replace '/signin' with your actual SignIn page route
         }
     };
+
+    const handleSubmit = (e) => {
+        if (e) e.preventDefault(); // Ensure that e is defined and preventDefault is called
+        const { addressTo, amount, keywords, message } = formData;
+        if (!addressTo || !amount || !keywords || !message) return;
+        sentTransaction();
+      };
 
     return (
         <div className={Style.NFTDescription}> {/* Container for NFT description */}
@@ -163,6 +177,19 @@ const NFTDescription = () => {
                     </div>
                 </div>
             </div>
+            {/* Pop-up form */}
+            {showPopup && (
+                <div className={PopupStyle.popup_container}>
+                    <h2 className={PopupStyle.popup_title}>Send ETH to Another User</h2>
+                    <form onSubmit={(e) => handleSubmit(e)}>
+                        <input type="text" placeholder="To the address:" name="addressTo" className={PopupStyle.popup_input} onChange={(e) => handleChange(e, "addressTo")} />
+                        <input type="number" placeholder="Amount (ETH):" name="amount" className={PopupStyle.popup_input} onChange={(e) => handleChange(e, "amount")} />
+                        <input type="text" placeholder="Keyword (Gif):" name="keyword" className={PopupStyle.popup_input} onChange={(e) => handleChange(e, "keyword")} />
+                        <input type="text" placeholder="Message:" name="message" className={PopupStyle.popup_input} onChange={(e) => handleChange(e, "message")} />
+                        <Button icon={<FaWallet />} btnName="Transfer ETH" handleClick={handleSubmit} classStyle={Style.button} className={PopupStyle.popup_button}/>
+                    </form>
+                </div>
+            )}
         </div>
     );
 };

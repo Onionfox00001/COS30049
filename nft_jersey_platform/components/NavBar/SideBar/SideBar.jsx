@@ -34,6 +34,10 @@ const SideBar = ({setOpenSideMenu}) => {
       link: "account",
     },
     {
+      name: "Upload NFT",
+      link: "uploadNFT",
+    },
+    {
       name: "Connect Wallet",
       link: "connectWallet",
     },
