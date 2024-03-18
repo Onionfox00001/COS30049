@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {FaFilter, FaAngleDown, FaAngleUp, FaWallet, FaUserAlt, FaCoins, FaLanguage} from 'react-icons/fa';
+import {FaFilter, FaAngleDown, FaAngleUp, FaWallet, FaUserAlt, FaCoins, FaLanguage, FaCalendar} from 'react-icons/fa';
 import {AiFillCloseCircle} from 'react-icons/ai';
 import {MdVerified} from 'react-icons/md';
 import {TiTick} from 'react-icons/ti';
@@ -7,61 +7,31 @@ import {TiTick} from 'react-icons/ti';
 //INTERNAL IMPORT
 import Style from "./Filter.module.css";
 
-const Filter = ({ onCategoryChange }) => {
-    const [filter, setFilter] = useState(true);
-    const [price1, setPrice1] = useState(true);
-    const [price2, setPrice2] = useState(true);
-    const [letter, setLetter] = useState(true);
-    const [selectedCategory, setSelectedCategory] = useState(null); // New state variable
-    
-  
-  //FUNCTION SECTION 
-  const openFilter = () => {
-    if (!filter) {
-      setFilter(true);
-    } else {
-      setFilter(false);
-    }
-  };
+const Filter = ({ onCategoryChange, onSortChange }) => {
+  const [filter, setFilter] = useState(true);
+  const [selectedSort, setSelectedSort] = useState(null); // New state variable for selected sort
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
-  const openPrice1 =() => {
-    if (!price1) {
-      setPrice1(true);
-    } else {
-      setPrice1(false);
-    }
-  };
+//FUNCTION SECTION 
+const openFilter = () => {
+  setFilter(!filter);
+};
 
-  const openPrice2 =() => {
-    if (!price2) {
-      setPrice2(true);
-    } else {
-      setPrice2(false);
-    }
-  };
+const handleSortChange = (sortType) => {
+  setSelectedSort(sortType);
+  onSortChange(sortType);
+};
 
-  const openLetter =() => {
-    if (!letter) {
-      setLetter(true);
-    } else {
-      setLetter(false);
-    }
-  };
-
-  const handleCategoryChange = (category) => {
-    if (category === selectedCategory) {
-      // If the selected category is the same as the one being clicked,
-      // set the selected category to null and call onCategoryChange with null to reset the filter
-      setSelectedCategory(null);
-      onCategoryChange(null);
-    } else {
-      // If the selected category is different from the one being clicked,
-      // proceed as before
-      setSelectedCategory(category);
-      const hashtag = `#${category.replace(' ', '').toLowerCase()}`;
-      onCategoryChange(hashtag);
-    }
-  };
+const handleCategoryChange = (category) => {
+  if (category === selectedCategory) {
+    setSelectedCategory(null);
+    onCategoryChange(null);
+  } else {
+    setSelectedCategory(category);
+    const hashtag = `#${category.replace(' ', '').toLowerCase()}`;
+    onCategoryChange(hashtag);
+  }
+};
 
   return (
     <div className={Style.filter}>
@@ -90,37 +60,37 @@ const Filter = ({ onCategoryChange }) => {
             <div className={Style.filter_box_items_box}>
               <div className={Style.filter_box_items_box_item}>
                 <FaWallet /> <span>ETH</span>
-                <AiFillCloseCircle />
+                <MdVerified />
               </div>
             </div>
 
             <div className={Style.filter_box_items_box}>
               <div 
                 className={Style.filter_box_items_box_item_trans}
-                onClick={() => openPrice1()}
+                onClick={() => handleSortChange('High - Low')}
               >
                 <FaCoins /> <small>High - Low</small>
-                {price1 ? <AiFillCloseCircle /> : <TiTick />}
+                {selectedSort === 'High - Low' ? <TiTick /> : <AiFillCloseCircle />}
               </div>
             </div>  
 
             <div className={Style.filter_box_items_box}>
               <div 
                 className={Style.filter_box_items_box_item_trans}
-                onClick={() => openPrice2()}
+                onClick={() => handleSortChange('Low - High')}
               >
                 <FaCoins /> <small>Low - High</small>
-                {price2 ? <AiFillCloseCircle /> : <TiTick />}
+                {selectedSort === 'Low - High' ? <TiTick /> : <AiFillCloseCircle />}
               </div>
             </div>
 
             <div className={Style.filter_box_items_box}>
               <div 
                 className={Style.filter_box_items_box_item_trans}
-                onClick={() => openLetter()}
+                onClick={() => handleSortChange('Year')}
               >
-                <FaLanguage /> <small>A - Z</small>
-                {letter ? <AiFillCloseCircle /> : <TiTick />}
+                <FaCalendar /> <small>Year</small>
+                {selectedSort === 'Year' ? <TiTick /> : <AiFillCloseCircle />}
               </div>
             </div>
 
