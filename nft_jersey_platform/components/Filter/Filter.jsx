@@ -18,8 +18,13 @@ const openFilter = () => {
 };
 
 const handleSortChange = (sortType) => {
-  setSelectedSort(sortType);
-  onSortChange(sortType);
+  if (sortType === selectedSort) {
+    setSelectedSort(null);
+    onSortChange(null);
+  } else {
+    setSelectedSort(sortType);
+    onSortChange(sortType);
+  }
 };
 
 const handleCategoryChange = (category) => {
