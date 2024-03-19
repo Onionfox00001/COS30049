@@ -8,6 +8,10 @@ export const TransactionContext = React.createContext();
 const ethereum = typeof window !== 'undefined' ? window.ethereum : null;
 
 const createEthereumContract = () => {
+  if (!ethereum || !ethers.providers) {
+    console.log("Ethereum or ethers.providers is not available");
+    return null;
+  }
   const provider = new ethers.providers.Web3Provider(ethereum);
   const signer = provider.getSigner();
   const transactionsContract = new ethers.Contract(contractAddress, contractABI, signer);

@@ -128,6 +128,41 @@ def get_user(username):
     # Return the user data as JSON
     return jsonify(user)
 
+@app.route('/users/<username>/update', methods=['POST'])
+def update_user_info(username):
+    # Get the data from the request
+    data = request.get_json()
+
+    # Get the blockchain_id and balanceInEther from the data
+    blockchain_id = data.get('blockchainId')
+    balance_in_ether = data.get('balanceInEther')
+
+    # Establish the connection
+    db = mysql.connector.connect(
+        host="feenix-mariadb.swin.edu.au",
+        user="s104177995",
+        password="180804",
+        database="s104177995_db"
+    )
+
+    # Create a new cursor
+    cursor = db.cursor()
+
+    # SQL query to update the user's information
+    query = "UPDATE user_info SET user_blockchain_id = %s, balance = %s WHERE username = %s"
+
+    # Execute the query
+    cursor.execute(query, (blockchain_id, balance_in_ether, username))
+
+    # Commit the transaction
+    db.commit()
+
+    # Close the connection
+    db.close()
+
+    return jsonify({'message': 'User info updated successfully'}), 200
+
+
 @app.route('/sign_up', methods=['POST'])
 def signup():
     # Get the request data

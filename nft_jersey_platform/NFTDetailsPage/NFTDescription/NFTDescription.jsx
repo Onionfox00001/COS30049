@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import { useRouter } from 'next/router'; // Import useRouter hook
 import Image from "next/image";
 import { MdVerified, MdCloudUpload, MdTimer, MdReportProblem, MdOutlineDeleteSweep } from "react-icons/md";
@@ -75,7 +75,7 @@ const NFTDescription = () => {
 
     const handleBuyNowClick = () => {
         if (isLoggedIn) {
-            // handle the buy now logic
+            setShowPopup(true);
         } else {
             alert('You need to be logged in to buy this NFT')
             router.push('/signin'); // replace '/signin' with your actual SignIn page route
@@ -179,14 +179,14 @@ const NFTDescription = () => {
             </div>
             {/* Pop-up form */}
             {showPopup && (
-                <div className={PopupStyle.popup_container}>
-                    <h2 className={PopupStyle.popup_title}>Send ETH to Another User</h2>
+                <div className={Style.popup_container}>
+                    <h2 className={Style.popup_title}>Send ETH to Another User</h2>
                     <form onSubmit={(e) => handleSubmit(e)}>
-                        <input type="text" placeholder="To the address:" name="addressTo" className={PopupStyle.popup_input} onChange={(e) => handleChange(e, "addressTo")} />
-                        <input type="number" placeholder="Amount (ETH):" name="amount" className={PopupStyle.popup_input} onChange={(e) => handleChange(e, "amount")} />
-                        <input type="text" placeholder="Keyword (Gif):" name="keyword" className={PopupStyle.popup_input} onChange={(e) => handleChange(e, "keyword")} />
-                        <input type="text" placeholder="Message:" name="message" className={PopupStyle.popup_input} onChange={(e) => handleChange(e, "message")} />
-                        <Button icon={<FaWallet />} btnName="Transfer ETH" handleClick={handleSubmit} classStyle={Style.button} className={PopupStyle.popup_button}/>
+                        <input type="text" placeholder="To the address:" name="addressTo" className={Style.popup_input} onChange={(e) => handleChange(e, "addressTo")} />
+                        <input type="number" step="any" placeholder="Amount (ETH):" name="amount" className={Style.popup_input} onChange={(e) => handleChange(e, "amount")} />
+                        <input type="text" placeholder="Keyword (Gif):" name="keyword" className={Style.popup_input} onChange={(e) => handleChange(e, "keyword")} />
+                        <input type="text" placeholder="Message:" name="message" className={Style.popup_input} onChange={(e) => handleChange(e, "message")} />
+                        <Button icon={<FaWallet />} btnName="Transfer ETH" handleClick={handleSubmit} classStyle={Style.button} className={Style.popup_button}/>
                     </form>
                 </div>
             )}
