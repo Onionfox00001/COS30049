@@ -162,6 +162,33 @@ def update_user_info(username):
 
     return jsonify({'message': 'User info updated successfully'}), 200
 
+@app.route('/blockchain_ids/<blockchain_id>', methods=['GET'])
+def get_user_by_blockchain_id(blockchain_id):
+    # Establish the connection
+    db = mysql.connector.connect(
+        host="feenix-mariadb.swin.edu.au",
+        user="s104177995",
+        password="180804",
+        database="s104177995_db"
+    )
+
+    # Create a new cursor
+    cursor = db.cursor()
+
+    # SQL query to fetch the required data
+    query = "SELECT user_blockchain_id FROM user_info WHERE user_blockchain_id = %s"
+
+    # Execute the query
+    cursor.execute(query, (blockchain_id,))
+
+    # Fetch the row
+    row = cursor.fetchone()
+
+    # close the connection
+    db.close()
+
+    # Return the user_blockchain_id as JSON if it exists
+    return jsonify({"user_blockchain_id": row[0]}) if row else jsonify({})
 
 @app.route('/sign_up', methods=['POST'])
 def signup():

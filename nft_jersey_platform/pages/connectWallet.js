@@ -36,33 +36,48 @@ const ConnectWallet = () => {
 		}
 
 		try {
-		// Check if MetaMask is installed
-		if (window.ethereum) {
-			// Request access to MetaMask accounts
-			const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-			const blockchain_id = accounts[0];
-			console.log('Connected to MetaMask:', blockchain_id);
-			alert('Wallet connected successfully.'); // Display a pop-up notification
+			// Check if MetaMask is installed
+			if (window.ethereum) {
+				// Request access to MetaMask accounts
+				const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+				const blockchain_id = accounts[0];
+								
+				// Check if the blockchainId is already in use
+				const blockchainIdResponse = await axios.get(`http://localhost:5000/blockchain_ids/${blockchain_id}`);
+				console.log('Blockchain ID response:', blockchainIdResponse.data);
+				if (blockchain_id === blockchainIdResponse.data.user_blockchain_id) {
+					alert('This blockchain ID is already in use.');
+					await window.ethereum.request({
+						method: "wallet_requestPermissions",
+						params: [
+							{
+								eth_accounts: {}
+							}
+						]
+					});
+				} else {
+					alert('Wallet connected successfully.'); // Display a pop-up notification
 
-			// Switch to Sepolia network
-			await window.ethereum.request({
-				method: 'wallet_switchEthereumChain',
-				params: [{ chainId: '0xaa36a7' }], // Chain ID for Sepolia
-			});
+					// Switch to Sepolia network
+					await window.ethereum.request({
+						method: 'wallet_switchEthereumChain',
+						params: [{ chainId: '0xaa36a7' }], // Chain ID for Sepolia
+					});
 
-			// Request account balance
-			const balanceInWeiHex = await window.ethereum.request({ method: 'eth_getBalance', params: [blockchain_id, 'latest'] });
-			const balanceInWei = BigInt(balanceInWeiHex); // Convert hexadecimal to decimal
+					// Request account balance
+					const balanceInWeiHex = await window.ethereum.request({ method: 'eth_getBalance', params: [blockchain_id, 'latest'] });
+					const balanceInWei = BigInt(balanceInWeiHex); // Convert hexadecimal to decimal
 
-			// Convert Wei to Ether and round to 4 decimal places
-			const balanceInEther = (Number(balanceInWei) / 10**18).toFixed(4);
-			console.log('Account balance in Ether:', balanceInEther);
-			
-			// Update the user's information in the database
-			updateUserInfo(blockchain_id, balanceInEther);
-		} else {
-			alert('MetaMask not detected. Please install MetaMask to connect.');
-		}
+					// Convert Wei to Ether and round to 4 decimal places
+					const balanceInEther = (Number(balanceInWei) / 10**18).toFixed(4);
+					console.log('Account balance in Ether:', balanceInEther);
+					
+					// Update the user's information in the database
+					updateUserInfo(blockchain_id, balanceInEther);
+				}
+			} else {
+				alert('MetaMask not detected. Please install MetaMask to connect.');
+			}
 		} catch (error) {
 			console.error('Error connecting to MetaMask:', error);
 		}
