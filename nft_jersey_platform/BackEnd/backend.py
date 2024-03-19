@@ -176,7 +176,7 @@ def get_user_by_blockchain_id(blockchain_id):
     cursor = db.cursor()
 
     # SQL query to fetch the required data
-    query = "SELECT user_blockchain_id FROM user_info WHERE user_blockchain_id = %s"
+    query = "SELECT username, user_blockchain_id FROM user_info WHERE user_blockchain_id = %s"
 
     # Execute the query
     cursor.execute(query, (blockchain_id,))
@@ -187,8 +187,8 @@ def get_user_by_blockchain_id(blockchain_id):
     # close the connection
     db.close()
 
-    # Return the user_blockchain_id as JSON if it exists
-    return jsonify({"user_blockchain_id": row[0]}) if row else jsonify({})
+    # Return the username and user_blockchain_id as JSON if they exist
+    return jsonify({"username": row[0], "user_blockchain_id": row[1]}) if row else jsonify({})
 
 @app.route('/sign_up', methods=['POST'])
 def signup():

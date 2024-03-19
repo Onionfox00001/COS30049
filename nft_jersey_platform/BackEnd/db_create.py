@@ -22,7 +22,7 @@ tables['user_info'] = (
     "  username VARCHAR(255) PRIMARY KEY,"
     "  password VARCHAR(255) NOT NULL,"
     "  email VARCHAR(255) UNIQUE NOT NULL,"
-    "  balance DECIMAL(10, 2),"
+    "  balance DECIMAL(10, 4),"
     "  user_blockchain_id VARCHAR(255) UNIQUE"
     ") ENGINE=InnoDB")
 

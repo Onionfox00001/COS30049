@@ -35,17 +35,23 @@ const ConnectWallet = () => {
 			return;
 		}
 
+		// Fetch the username of the logged-in user
+		const usernameResponse = await axios.get('http://localhost:5000/get_username');
+		console.log('Username response:', usernameResponse);
+		const username = usernameResponse.data.username;
+		console.log('Username:', username);
+
 		try {
 			// Check if MetaMask is installed
 			if (window.ethereum) {
 				// Request access to MetaMask accounts
 				const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
 				const blockchain_id = accounts[0];
-								
+
 				// Check if the blockchainId is already in use
 				const blockchainIdResponse = await axios.get(`http://localhost:5000/blockchain_ids/${blockchain_id}`);
-				console.log('Blockchain ID response:', blockchainIdResponse.data);
-				if (blockchain_id === blockchainIdResponse.data.user_blockchain_id) {
+				console.log('Blockchain ID response:', blockchainIdResponse.data.username);
+				if (blockchain_id === blockchainIdResponse.data.user_blockchain_id && username !== blockchainIdResponse.data.username) {
 					alert('This blockchain ID is already in use.');
 					await window.ethereum.request({
 						method: "wallet_requestPermissions",
@@ -89,7 +95,7 @@ const ConnectWallet = () => {
 			const usernameResponse = await axios.get('http://localhost:5000/get_username');
 			const username = usernameResponse.data.username;
 			console.log('Username:', username);
-	
+			
 			// Send a request to the server to update the user's information
 			const response = await axios.post(`http://localhost:5000/users/${username}/update`, {
 				blockchainId,
