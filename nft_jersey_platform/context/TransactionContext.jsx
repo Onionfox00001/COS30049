@@ -8,10 +8,6 @@ export const TransactionContext = React.createContext();
 const ethereum = typeof window !== 'undefined' ? window.ethereum : null;
 
 const createEthereumContract = () => {
-  if (!ethereum || !ethers.providers) {
-    console.log("Ethereum or ethers.providers is not available");
-    return null;
-  }
   const provider = new ethers.providers.Web3Provider(ethereum);
   const signer = provider.getSigner();
   const transactionsContract = new ethers.Contract(contractAddress, contractABI, signer);
@@ -23,12 +19,7 @@ export const TransactionsProvider = ({ children }) => {
   const [formData, setformData] = useState({ addressTo: "", amount: "", keyword: "", message: "" });
   const [currentAccount, setCurrentAccount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [transactionCount, setTransactionCount] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem("transactionCount");
-    }
-    return null; // or any default value you want to set
-  });
+  const [transactionCount, setTransactionCount] = useState(typeof window !== 'undefined' ? localStorage.getItem("transactionCount") : null);
   const [transactions, setTransactions] = useState([]);
 
   const handleChange = (e, name) => {
@@ -85,18 +76,16 @@ export const TransactionsProvider = ({ children }) => {
       if (ethereum) {
         const transactionsContract = createEthereumContract();
         const currentTransactionCount = await transactionsContract.getTransactionCount();
-  
+        console.log("Current transaction count", currentTransactionCount);
+
         window.localStorage.setItem("transactionCount", currentTransactionCount);
-      } else {
-        console.log("Ethereum object is not available.");
       }
     } catch (error) {
       console.log(error);
-      console.log("An error occurred while checking if transactions exist.");
+
+      // throw new Error("No ethereum object");
     }
   };
-  
-  
 
   const connectWallet = async () => {
     try {

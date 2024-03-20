@@ -2,7 +2,7 @@ import '@/styles/globals.css'
 
 // INTERNAL IMPORT
 import { NavBar, Footer } from '../components/components_index';
-import { TransactionsProvider } from '@/context/TransactionContext';
+import { TransactionsProvider } from '../context/TransactionContext';
 
 const MyApp = ({ Component, pageProps }) =>
 <TransactionsProvider>

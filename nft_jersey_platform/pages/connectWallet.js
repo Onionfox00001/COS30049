@@ -35,15 +35,14 @@ const ConnectWallet = () => {
 			return;
 		}
 
-		// Fetch the username of the logged-in user
-		const usernameResponse = await axios.get('http://localhost:5000/get_username');
-		console.log('Username response:', usernameResponse);
-		const username = usernameResponse.data.username;
-		console.log('Username:', username);
-
 		try {
 			// Check if MetaMask is installed
 			if (window.ethereum) {
+				// Fetch the username of the logged-in user
+				const usernameResponse = await axios.get('http://localhost:5000/get_username');
+				const username = usernameResponse.data.username;
+				console.log('Username:', username);
+
 				// Request access to MetaMask accounts
 				const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
 				const blockchain_id = accounts[0];

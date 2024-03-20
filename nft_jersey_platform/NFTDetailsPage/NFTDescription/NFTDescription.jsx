@@ -25,6 +25,16 @@ async function fetchNFTData(nft_token_id) {
     return data;
 }
 
+const Input = ({ placeholder, name, type, value, handleChange }) => (
+    <input
+      placeholder={placeholder}
+      type={type}
+      step="0.0001"
+      value={value}
+      onChange={(e) => handleChange(e, name)}
+      className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
+    />
+  );
 
 const NFTDescription = () => {
     // State variables
@@ -38,7 +48,7 @@ const NFTDescription = () => {
     const {
         formData,
         handleChange,
-        sentTransaction
+        sendTransaction,
       } = useContext(TransactionContext);    
 
     useEffect(() => {
@@ -83,10 +93,13 @@ const NFTDescription = () => {
     };
 
     const handleSubmit = (e) => {
-        if (e) e.preventDefault(); // Ensure that e is defined and preventDefault is called
-        const { addressTo, amount, keywords, message } = formData;
-        if (!addressTo || !amount || !keywords || !message) return;
-        sentTransaction();
+        const { addressTo, amount, keyword, message } = formData;
+    
+        e.preventDefault();
+    
+        if (!addressTo || !amount || !keyword || !message) return;
+    
+        sendTransaction();
       };
 
     return (
@@ -181,13 +194,17 @@ const NFTDescription = () => {
             {showPopup && (
                 <div className={Style.popup_container}>
                     <h2 className={Style.popup_title}>Send ETH to Another User</h2>
-                    <form onSubmit={(e) => handleSubmit(e)}>
-                        <input type="text" placeholder="To the address:" name="addressTo" className={Style.popup_input} onChange={(e) => handleChange(e, "addressTo")} />
-                        <input type="number" step="any" placeholder="Amount (ETH):" name="amount" className={Style.popup_input} onChange={(e) => handleChange(e, "amount")} />
-                        <input type="text" placeholder="Keyword (Gif):" name="keyword" className={Style.popup_input} onChange={(e) => handleChange(e, "keyword")} />
-                        <input type="text" placeholder="Message:" name="message" className={Style.popup_input} onChange={(e) => handleChange(e, "message")} />
-                        <Button icon={<FaWallet />} btnName="Transfer ETH" handleClick={handleSubmit} classStyle={Style.button} className={Style.popup_button}/>
-                    </form>
+                    <Input placeholder="Address To" name="addressTo" type="text" handleChange={handleChange}  />
+                    <Input placeholder="Amount (ETH)" name="amount" type="number" handleChange={handleChange} />
+                    <Input placeholder="Keyword (Gif)" name="keyword" type="text" handleChange={handleChange} />
+                    <Input placeholder="Enter Message" name="message" type="text" handleChange={handleChange} />
+                    <button
+                  type="button"
+                  onClick={handleSubmit}
+                  className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] hover:bg-[#3d4f7c] rounded-full cursor-pointer"
+                >
+                  Send now
+                </button>
                 </div>
             )}
         </div>

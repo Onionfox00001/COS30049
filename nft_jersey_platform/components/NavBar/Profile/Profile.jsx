@@ -20,6 +20,7 @@ const Profile = () => {
                 // Fetch the username of the logged-in user
                 const usernameResponse = await axios.get('http://localhost:5000/get_username');
                 const username = usernameResponse.data.username;
+                console.log('Username:', username);
     
                 // Fetch the user data
                 const userResponse = await axios.get(`http://localhost:5000/users/${username}`);
