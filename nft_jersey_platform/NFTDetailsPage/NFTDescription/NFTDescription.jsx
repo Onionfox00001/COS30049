@@ -41,12 +41,13 @@ const NFTDescription = () => {
     const [social, setSocial] = useState(false); // State for social share menu visibility
     const [NFTMenu, setNFTMenu] = useState(false); // State for NFT menu visibility
     const [nftData, setNftData] = useState(null); // State for NFT data
-    const [showPopup, setShowPopup] = useState(false);
+    const [showPopup] = useState(false);
 
     const router = useRouter(); // Initialize useRouter hook
     const { nft_token_id } = router.query; // Get nft_token_id from URL
     const {
         formData,
+        setformData,
         handleChange,
         sendTransaction,
       } = useContext(TransactionContext);    
@@ -56,6 +57,16 @@ const NFTDescription = () => {
             fetchNFTData(nft_token_id).then(data => setNftData(data));
         }
     }, [nft_token_id]); // Add nft_token_id to dependency array
+
+    useEffect(() => {
+        if (nftData) {
+            setformData({
+                addressTo: nftData.owner_blockchain_id,
+                amount: nftData.price,
+                message: nftData.title
+            });
+        }
+    }, [nftData]);
 
     // Function to toggle social share menu visibility
     const openSocial = () => {
@@ -85,22 +96,16 @@ const NFTDescription = () => {
 
     const handleBuyNowClick = () => {
         if (isLoggedIn) {
-            setShowPopup(true);
+            const { addressTo, amount, message } = formData;
+
+            if (!addressTo || !amount || !message) return;
+            
+            sendTransaction();
         } else {
             alert('You need to be logged in to buy this NFT')
             router.push('/signin'); // replace '/signin' with your actual SignIn page route
         }
     };
-
-    const handleSubmit = (e) => {
-        const { addressTo, amount, keyword, message } = formData;
-    
-        e.preventDefault();
-    
-        if (!addressTo || !amount || !keyword || !message) return;
-    
-        sendTransaction();
-      };
 
     return (
         <div className={Style.NFTDescription}> {/* Container for NFT description */}
@@ -193,18 +198,9 @@ const NFTDescription = () => {
             {/* Pop-up form */}
             {showPopup && (
                 <div className={Style.popup_container}>
-                    <h2 className={Style.popup_title}>Send ETH to Another User</h2>
-                    <Input placeholder="Address To" name="addressTo" type="text" handleChange={handleChange}  />
-                    <Input placeholder="Amount (ETH)" name="amount" type="number" handleChange={handleChange} />
-                    <Input placeholder="Keyword (Gif)" name="keyword" type="text" handleChange={handleChange} />
-                    <Input placeholder="Enter Message" name="message" type="text" handleChange={handleChange} />
-                    <button
-                  type="button"
-                  onClick={handleSubmit}
-                  className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] hover:bg-[#3d4f7c] rounded-full cursor-pointer"
-                >
-                  Send now
-                </button>
+                    <Input placeholder="Address To" name="addressTo" type="text" handleChange={handleChange} value={nftData.owner_blockchain_id} />
+                    <Input placeholder="Amount (ETH)" name="amount" type="number" handleChange={handleChange} value={nftData.price}/>
+                    <Input placeholder="Enter Message" name="message" type="text" handleChange={handleChange} value={nftData.title}/>
                 </div>
             )}
         </div>

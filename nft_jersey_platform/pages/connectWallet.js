@@ -5,6 +5,8 @@ import images from '../img';
 import axios from 'axios';
 
 const ConnectWallet = () => {
+	axios.defaults.withCredentials = true;
+	
 	const [activeBtn, setActiveBtn] = useState(1);
 
 	const providerArray = [
