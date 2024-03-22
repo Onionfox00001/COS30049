@@ -100,7 +100,7 @@ const NFTDescription = () => {
 
             if (!addressTo || !amount || !message) return;
             
-            sendTransaction();
+            sendTransaction(nftData.title);
         } else {
             alert('You need to be logged in to buy this NFT')
             router.push('/signin'); // replace '/signin' with your actual SignIn page route

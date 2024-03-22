@@ -9,9 +9,12 @@ import Style from "./Form.module.css";
 import { Button } from "../../components/components_index";
 import { shortenAddress } from "./shortenAddress";
 
-const TransactionsCard = ({ addressFrom, addressTo, message, timestamp, amount }) => {
+const TransactionsCard = ({ addressTo, addressFrom, amount, timestamp, message }) => {
     return (
         <div>
+            <div>
+                <p>{message}</p>
+            </div>
             <div>
                 <a href={`https://sepolia.etherscan.io/address/${addressFrom}`} target="_blank" rel="noreferrer" style={{ textDecoration: 'none', color: "#4c5773" }}>
                     <p>{shortenAddress(addressFrom)}</p>
@@ -22,9 +25,7 @@ const TransactionsCard = ({ addressFrom, addressTo, message, timestamp, amount }
                     <p>{shortenAddress(addressTo)}</p>
                 </a>
             </div>
-            <div>
-                <p>{message}</p>
-            </div>
+            
             <div>
                 <p>{timestamp}</p>
             </div>
@@ -40,9 +41,9 @@ const Transactions = ({ transactions }) => {
         <table className={`${Style.transactionTable} w-full`}>
             <thead>
                 <tr>
+                    <th>NFT Jersey</th>
                     <th>Transaction From</th>
                     <th>Transaction To</th>
-                    <th>NFT Jersey</th>
                     <th className="w-20">Time Stamp</th> 
                     <th>Amount</th>
                 </tr>
@@ -50,9 +51,9 @@ const Transactions = ({ transactions }) => {
             <tbody>
                 {transactions.map((transaction, index) => (
                     <tr key={index}>
+                        <td><TransactionsCard message={transaction.message} /></td>
                         <td><TransactionsCard addressFrom={transaction.addressFrom} /></td>
                         <td><TransactionsCard addressTo={transaction.addressTo} /></td>
-                        <td><TransactionsCard message={transaction.message} /></td>
                         <td><TransactionsCard timestamp={transaction.timestamp} /></td> 
                         <td><TransactionsCard amount={`${transaction.amount} ETH`}/></td>
                     </tr>

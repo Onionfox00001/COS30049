@@ -34,10 +34,10 @@ export const TransactionsProvider = ({ children }) => {
         const availableTransactions = await transactionsContract.getAllTransactions();
 
         const structuredTransactions = availableTransactions.map((transaction) => ({
-          addressFrom: transaction.sender,
           addressTo: transaction.receiver,
-          message: transaction.message,
+          addressFrom: transaction.sender,
           timestamp: new Date(transaction.timestamp.toNumber() * 1000).toLocaleString(),
+          message: transaction.message,
           amount: parseInt(transaction.amount._hex) / (10 ** 18)
         }));
 
@@ -101,7 +101,7 @@ export const TransactionsProvider = ({ children }) => {
     }
   };
 
-  const sendTransaction = async () => {
+  const sendTransaction = async (nftTitle) => {
     try {
         if (ethereum) {
             const { addressTo, amount, message } = formData;
@@ -118,7 +118,8 @@ export const TransactionsProvider = ({ children }) => {
                 }],
             });
 
-            const transactionHash = await transactionsContract.addToBlockchain(addressTo, parsedAmount, message); 
+            const transactionHash = await transactionsContract.addToBlockchain(addressTo, parsedAmount, message, nftTitle); // Pass the NFT title here
+
             setIsLoading(true);
             console.log(`Loading - ${transactionHash.hash}`);
             await transactionHash.wait();
