@@ -22,16 +22,6 @@ const account = () => {
 
             <div className={Style.account_box}>
                 {/* Image upload section */}
-                <div className={Style.account_box_img} >
-                    {/* Display the current profile image or placeholder */}
-                    <Image
-                        src={images.user1}
-                        alt="account upload"
-                        width={150}
-                        height={150}
-                        className={Style.account_box_img_img}
-                    />
-                </div>
 
                 {/* Form section */}
                 <div className={Style.account_box_from}>

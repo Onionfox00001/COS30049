@@ -77,43 +77,9 @@
     margin: 4rem 0;
 }
 
-.Form_box_btn a{
-    text-decoration: none;
-    color: var(--icons-color);
-}
-
 .button{
     width: 100%;
     display: flex;
     justify-content: center;
     font-size: 1.5rem;
 }
-
-/* Form.module.css */
-
-.Form_box_input_table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 2rem;
-}
-
-.Form_box_input_th,
-.Form_box_input_td {
-    border: 1px solid var(--icons-color);
-    padding: 0.5rem;
-    text-decoration: none;
-}
-
-.Form_box_input_th {
-    background-color: var(--main-bg-color);
-    font-weight: bold;
-}
-
-.Form_box_input_td {
-    text-align: center;
-}
-
-.Form_box_input_tr:hover {
-    background-color: var(--shadow-dark-color);
-}
-

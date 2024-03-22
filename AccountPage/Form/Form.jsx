@@ -1,70 +1,17 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react'
 import { HiOutlineMail } from "react-icons/hi";
 import { RiCopperCoinFill, RiUserFill, RiLock2Fill } from "react-icons/ri";
-import { TransactionContext } from "../../context/TransactionContext";
 import axios from 'axios';
-import Link from "next/link";
 
+// Internal import
 import Style from "./Form.module.css";
 import { Button } from "../../components/components_index";
-import { shortenAddress } from "./shortenAddress";
-
-const TransactionsCard = ({ addressTo, addressFrom, amount, timestamp, message }) => {
-    return (
-        <div>
-            <div>
-                <a href={`https://sepolia.etherscan.io/address/${addressFrom}`} target="_blank" rel="noreferrer" style={{ textDecoration: 'none', color: "#4c5773" }}>
-                    <p>{shortenAddress(addressFrom)}</p>
-                </a>
-            </div>
-            <div>
-                <a href={`https://sepolia.etherscan.io/address/${addressTo}`} target="_blank" rel="noreferrer" style={{ textDecoration: 'none', color: "#4c5773" }}>
-                    <p>{shortenAddress(addressTo)}</p>
-                </a>
-            </div>
-            <div>
-                <p>{message}</p>
-            </div>
-            <div>
-                <p>{timestamp}</p>
-            </div>
-            <div>
-                <p>{amount}</p>
-            </div>
-        </div>
-    );
-};
-
-const Transactions = ({ transactions }) => {
-    return (
-        <table className={`${Style.transactionTable} w-full`}>
-            <thead>
-                <tr>
-                    <th>Transaction From</th>
-                    <th>Transaction To</th>
-                    <th>NFT Jersey</th>
-                    <th className="w-20">Time Stamp</th> 
-                    <th>Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                {transactions.map((transaction, index) => (
-                    <tr key={index}>
-                        <td><TransactionsCard addressFrom={transaction.addressFrom} /></td>
-                        <td><TransactionsCard addressTo={transaction.addressTo} /></td>
-                        <td><TransactionsCard message={transaction.message} /></td>
-                        <td><TransactionsCard timestamp={transaction.timestamp} /></td> 
-                        <td><TransactionsCard amount={`${transaction.amount} ETH`}/></td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
-    );
-};
 
 const Form = () => {
     axios.defaults.withCredentials = true;
+
     const [user, setUser] = useState({});
+
     useEffect(() => {
         const fetchUser = async () => {
             try {
@@ -86,8 +33,6 @@ const Form = () => {
     
         fetchUser();
     }, []);
-
-    const { transactions, error } = useContext(TransactionContext);
 
     return (
         <div className={Style.Form}>
@@ -136,27 +81,43 @@ const Form = () => {
                             <input type="text" placeholder={user ? user.balance : 'Not logged in'} />
                         </div>
                     </div>
-                    
+
                     {/* Transaction History Table */}
                     <div className={Style.Form_box_input}>
                         <label htmlFor="history">Transaction History</label>
-                        <div>
-                            <Transactions transactions={transactions} />
-                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Transaction ID</th>
+                                    <th>Transaction Number</th>
+                                    <th>Item</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#1243</td>
+                                    <td>1234jahds0890712</td>
+                                    <td>Cristiano Ronaldo NFT Jersey</td>
+                                    <td>500 ETH</td>
+                                </tr>
+                                <tr>
+                                    <td>#1249</td>
+                                    <td>1234asdasd99686</td>
+                                    <td>Ronaldo NFT Jersey</td>
+                                    <td>300 ETH</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-
-                    {/* Error Handling */}
-                    {error && <p className="text-red-500">{error}</p>}
 
                     {/* Upload Button */}
                     <div className={Style.Form_box_btn}>
-                        <Link href="/connectWallet">
-                            <Button
-                                btnName="Connect Wallet"
-                                handleClick={() => {}}
-                                classStyle={Style.button}
-                            />
-                        </Link>
+                        <Button
+                            btnName="Upload Profile"
+                            handleClick={() => { }}
+                            classStyle={Style.button}
+                        />
                     </div>
                 </form>
             </div>
