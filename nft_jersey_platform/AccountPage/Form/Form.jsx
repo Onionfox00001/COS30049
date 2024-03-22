@@ -9,7 +9,7 @@ import Style from "./Form.module.css";
 import { Button } from "../../components/components_index";
 import { shortenAddress } from "./shortenAddress";
 
-const TransactionsCard = ({ addressTo, addressFrom, amount, timestamp, message }) => {
+const TransactionsCard = ({ addressFrom, addressTo, message, timestamp, amount }) => {
     return (
         <div>
             <div>
