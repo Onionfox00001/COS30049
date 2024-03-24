@@ -18,11 +18,11 @@ To run the code locally, follow these steps:
 
 1. Open your terminal and navigate to the project directory if you haven't already.
 2. Run the following command to start the development server:
-  -       npm install next: install Next.js
-  -       pip install -U Flask: install Flask
-  -       pip install -U flask-cors: install flask-cors
-  -       cd BackEnd: move to the BackEnd directory
-  -       python backend.py: run the backend.py file to connect with the database
+   `npm install next`: install Next.js <br>
+   `pip install -U Flask`: install Flask <br>
+   `pip install -U flask-cors`: install flask-cors <br>
+   `cd BackEnd`: move to the BackEnd directory <br>
+   `python backend.py`: run the backend.py file to connect with the database
 3. Create a new terminal and type the command `npm run dev`. 
 4. Once the server is running, you should see a message indicating the local server address (typically [http://localhost:3000](http://localhost:3000)).
 5. Open your web browser and navigate to the provided local server address.
