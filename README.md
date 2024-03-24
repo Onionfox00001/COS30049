@@ -12,7 +12,7 @@ Make sure you have Node.js and npm installed on your machine.
 
 - Node.js: [Download and Install Node.js](https://nodejs.org/)
 - npm: npm is distributed with Node.js- which means that when you download Node.js, you automatically get npm installed on your computer.
-- MetaMask: Download and Install MetaMask
+- MetaMask: [Download and Install MetaMask](https://metamask.io/download.html)
 
 ### Running the Code
 To run the code locally, follow these steps:
