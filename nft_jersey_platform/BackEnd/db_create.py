@@ -37,17 +37,6 @@ tables['product'] = (
     "  FOREIGN KEY (owner_blockchain_id) REFERENCES user_info(user_blockchain_id)"
     ") ENGINE=InnoDB")
 
-tables['transaction_info'] = (
-    "CREATE TABLE IF NOT EXISTS transaction ("
-    "  contract_address VARCHAR(255) NOT NULL,"
-    "  nft_token_id VARCHAR(255),"
-    "  buyer_blockchain_id VARCHAR(255),"
-    "  seller_blockchain_id VARCHAR(255),"
-    "  FOREIGN KEY (nft_token_id) REFERENCES product(nft_token_id),"
-    "  FOREIGN KEY (buyer_blockchain_id) REFERENCES user_info(user_blockchain_id),"
-    "  FOREIGN KEY (seller_blockchain_id) REFERENCES user_info(user_blockchain_id)"
-    ") ENGINE=InnoDB")
-
 # Create each table
 for table_name in tables:
     table_description = tables[table_name]
