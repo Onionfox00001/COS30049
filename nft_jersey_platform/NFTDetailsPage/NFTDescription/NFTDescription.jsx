@@ -63,7 +63,7 @@ const NFTDescription = () => {
             setformData({
                 addressTo: nftData.owner_blockchain_id,
                 amount: nftData.price,
-                message: nftData.title
+                message: nft_token_id
             });
         }
     }, [nftData]);
@@ -100,7 +100,7 @@ const NFTDescription = () => {
 
             if (!addressTo || !amount || !message) return;
             
-            sendTransaction(nftData.title);
+            sendTransaction(nft_token_id);
         } else {
             alert('You need to be logged in to buy this NFT')
             router.push('/signin'); // replace '/signin' with your actual SignIn page route
@@ -191,18 +191,9 @@ const NFTDescription = () => {
                                 classStyle={Style.button}
                             />
                         </div>
-
                     </div>
                 </div>
             </div>
-            {/* Pop-up form */}
-            {showPopup && (
-                <div className={Style.popup_container}>
-                    <Input placeholder="Address To" name="addressTo" type="text" handleChange={handleChange} value={nftData.owner_blockchain_id} />
-                    <Input placeholder="Amount (ETH)" name="amount" type="number" handleChange={handleChange} value={nftData.price}/>
-                    <Input placeholder="Enter Message" name="message" type="text" handleChange={handleChange} value={nftData.title}/>
-                </div>
-            )}
         </div>
     );
 };

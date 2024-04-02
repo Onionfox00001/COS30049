@@ -41,7 +41,7 @@ const Transactions = ({ transactions }) => {
         <table className={`${Style.transactionTable} w-full`}>
             <thead>
                 <tr>
-                    <th>NFT Jersey</th>
+                    <th>NFT ID</th>
                     <th>Transaction From</th>
                     <th>Transaction To</th>
                     <th className="w-20">Time Stamp</th> 
